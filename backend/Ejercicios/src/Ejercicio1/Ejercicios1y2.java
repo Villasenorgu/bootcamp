@@ -16,7 +16,7 @@ public class Ejercicios1y2 {
 		int num = rnd.nextInt(100);
 		System.out.println("Numero Secreto:" + num);
 
-		for (int intentos = 10; intentos > 0; intentos++) {
+		for (int intentos = 10; intentos > 0; intentos--) {
 			System.out.println("Intenta adivinarlo, introduce un número:");
 			Scanner teclado = new Scanner(System.in);
 			var cad = teclado.nextLine();
@@ -30,6 +30,9 @@ public class Ejercicios1y2 {
 				else
 					System.out.println("El número que buscas es mas grande.");
 			}
+			if (intentos == 1) {
+				System.out.println("No has conseguido acertar el número");
+			}
 
 		}
 
@@ -39,27 +42,58 @@ public class Ejercicios1y2 {
 		// "3+4+3,4-7*1="
 		System.out.println("Introduce una cadena de números y operadores");
 		Scanner teclado = new Scanner(System.in);
-		var cad = teclado.nextLine();
+		String cad = teclado.nextLine();
 
-		int resultado = 0;
-
-		cad = cad.replaceAll("\\+", " \\+\n");
-		cad = cad.replaceAll("\\-", " \\-\n");
-		cad = cad.replaceAll("\\*", " \\*\n");
-		cad = cad.replaceAll("\\=", " \\=\n");
-		System.out.println(cad + " ");
+		// Separacion de elementos a partir de operadores
+		cad = cad.replaceAll("\\+", " \\+ ");
+		cad = cad.replaceAll("\\-", " \\- ");
+		cad = cad.replaceAll("\\*", " \\* ");
+		cad = cad.replaceAll("\\=", " \\= ");
+		cad = cad.replaceAll("\\/", " \\/ ");
+		cad = cad.replaceAll(",", ".");
+		// System.out.println(cad + " ");
 		String[] cad2 = cad.split(" ");
-
-		for (int i = 0; i < cad2.length; i++) {
-			System.out.println(cad2[i]);
+		// Mostrar numeros + operadores por linea
+		for (int i = 0; i < cad2.length; i += 2) {
+			System.out.println(cad2[i] + " " + cad2[i + 1]);
 		}
 
+		// Calculo de * y / (Prioridad)
 		for (int i = 0; i < cad2.length; i++) {
+			if (cad2[i].equals("*")) {
+				int producto = (int) (Double.parseDouble(cad2[i - 1]) * Double.parseDouble(cad2[i + 1]));
+				cad2[i - 1] = Integer.toString(producto);
+				cad2[i] = ";";
+				cad2[i + 1] = "a";
+			} else if (cad2[i].equals("/")) {
+				int producto = (int) (Double.parseDouble(cad2[i - 1]) / Double.parseDouble(cad2[i + 1]));
+				cad2[i - 1] = Integer.toString(producto);
+				cad2[i] = ";";
+				cad2[i + 1] = "a";
+			}
+		}
+
+		// Calculo de + y -
+		Double resultado = Double.parseDouble(cad2[0]);
+		int contOperador = 1;
+		for (int i = 2; i < cad2.length - 1; i += 2) {
 			try {
-				resultado = +Integer.parseInt(cad2[i]);
-				System.out.println(resultado);
+				if (cad2[contOperador].equals("+")) {
+					resultado += Double.parseDouble(cad2[i]);
+				}
+				if (cad2[contOperador].equals("-")) {
+					resultado -= Double.parseDouble(cad2[i]);
+				}
+				if (cad2[contOperador].equals("*")) {
+					resultado *= Double.parseDouble(cad2[i]);
+				}
+				if (cad2[contOperador].equals("/")) {
+					resultado /= Double.parseDouble(cad2[i]);
+				}
+				contOperador += 2;
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println("El valor no es un double");
+				break;
 			}
 
 		}
