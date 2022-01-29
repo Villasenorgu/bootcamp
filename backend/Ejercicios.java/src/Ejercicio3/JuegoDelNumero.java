@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class JuegoDelNumero {
 	
-	public static void main() {
+	public static void main(String[] args) {
 		
 		inicializar();
 		
@@ -22,7 +22,7 @@ public class JuegoDelNumero {
 	
 	public static String Jugada(int nRandom) {
 		
-		for (int intentos = 10; intentos > 0; intentos--) {
+		for (int intentos = 9; intentos >= 0; intentos--) {
 			//JOptionPane.showInputDialog("Intenta adivinarlo, introduce un número:");
 			System.out.println("Intenta adivinarlo, introduce un número:");
 			Scanner teclado = new Scanner(System.in);
@@ -31,14 +31,17 @@ public class JuegoDelNumero {
 
 			if (numeroIntroducido == nRandom) {
 				System.out.println("Has acertado!!");
+				break;
 			} else {
-				if (numeroIntroducido > nRandom)
-					System.out.println("El número que buscas es mas pequeño.Te quedan "+ intentos +" intentos");
-				else
-					System.out.println("El número que buscas es mas grande.Te quedan "+ intentos +" intentos");
-			}
-			if (intentos == 1) {
+				if((numeroIntroducido != nRandom) && intentos == 0) {					
+				System.out.println("No has conseguido acertar el número");
 				return "No has conseguido acertar el número";
+				}else if (numeroIntroducido > nRandom) {					
+					System.out.println("El número que buscas es mas pequeño.Te quedan "+ intentos +" intentos");
+				}
+				else {
+					System.out.println("El número que buscas es mas grande.Te quedan "+ intentos +" intentos");
+				}
 			}
 
 		}
