@@ -1,4 +1,4 @@
-package Ejercicio1;
+package Ejercicio1y2;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -84,12 +84,7 @@ public class Ejercicios1y2 {
 				if (cad2[contOperador].equals("-")) {
 					resultado -= Double.parseDouble(cad2[i]);
 				}
-				if (cad2[contOperador].equals("*")) {
-					resultado *= Double.parseDouble(cad2[i]);
-				}
-				if (cad2[contOperador].equals("/")) {
-					resultado /= Double.parseDouble(cad2[i]);
-				}
+				
 				contOperador += 2;
 			} catch (Exception e) {
 				System.out.println("El valor no es un double");
