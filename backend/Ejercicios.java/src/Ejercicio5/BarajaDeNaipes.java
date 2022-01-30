@@ -5,62 +5,63 @@ import java.util.Collections;
 
 public class BarajaDeNaipes {
 
-	static ArrayList<Cartas> barajaActual;
-	static Jugador jugador1 = new Jugador();
-	static Jugador jugador2 = new Jugador();
+	static ArrayList<Cartas> barajaActual= new ArrayList<Cartas>();;
+
+	static ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 
 	public static void main(String[] args) {
 
-		iniBaraja();
+		barajaActual = Baraja.iniBaraja();
 		barajar(barajaActual);
 		iniJugadores("Pepe", "Juan");
-		repartir(barajaActual, 2, jugador1, jugador2);
+		System.out.println(jugadores);
+		repartir(barajaActual, 2, jugadores);
+		System.out.println(jugadores);
+		comparar(barajaActual.get(0),barajaActual.get(1));
 
 	}
 
-	public static ArrayList<Cartas> iniBaraja() {
-		final String[] Palo = { "Picas", "Diamantes", "Tréboles", "Corazones" };
-		final String[] Valor = { "As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
-		ArrayList<Cartas> Baraja = new ArrayList<Cartas>();
-
-		// Crea la baraja (todas las combinaciones Palo Valor)
-		for (int i = 0; i < Palo.length; i++) {
-			for (int j = 0; j < Valor.length; j++) {
-				Baraja.add(new Cartas(Valor[j], Palo[i]));
-			}
-		}
-
-		// Muestra cada carta por consola
-		System.out.println("Tamaño de la baraja: " + Baraja.size() + " cartas");
-		System.out.println(Baraja.toString());
-
-		// devuelve la baraja
-		barajaActual = Baraja;
-		return Baraja;
-	}
+	
 
 	public static void barajar(ArrayList<Cartas> Baraja) {
 		Collections.shuffle(Baraja);
 		System.out.println("Aspecto despues de barajar: " + Baraja.toString());
 	}
 
-	public static void iniJugadores(String nJugador1, String nJugador2) {
-		jugador1.setNombre(nJugador1);
-		jugador2.setNombre(nJugador2);
-		System.out.println(jugador1.toString());
-		System.out.println(jugador2.toString());
+	public static void iniJugadores(String...nJugador) {
+		for(String nJ:nJugador) {
+		Jugador nj = new Jugador();
+		nj.setNombre(nJ);
+		System.out.println(nj.toString());
+		jugadores.add(nj);
+		}
 	}
 
-	public static void repartir(ArrayList<Cartas> Baraja, int cartasARepartir, Jugador jugador1, Jugador jugador2) {
+	public static void repartir(ArrayList<Cartas> Baraja, int cartasARepartir,ArrayList<Jugador> jugadores) {
 		for (int i = 0; i < cartasARepartir; i++) {
 			if (cartasARepartir <= Baraja.size()) {
-				jugador1.addCarta(Baraja.get(0));
-				Baraja.remove(0);
-				jugador2.addCarta(Baraja.get(0));
-				Baraja.remove(0);
-				System.out.println(jugador1.toString());
-				System.out.println(jugador2.toString());
+				for (Jugador j : jugadores) {
+					j.addCarta(Baraja.get(0));
+					Baraja.remove(0);
+					System.out.println(j.toString());
+				}
+			} else {
+				System.out.println("No quedan cartas suficientes para repartir al total de jugadores");
 			}
 		}
+		System.out.println("Baraja restante: "+barajaActual);
+	}
+
+	public static void comparar(Cartas carta1, Cartas carta2) {
+		int c1 = carta1.getPuntuacion();
+		int c2 = carta2.getPuntuacion();
+		if(c1 == c2) {
+			System.out.println(carta1.toString()+" tiene el mismo valor que "+carta2.toString());
+		}else if(c1 < c2) {
+			System.out.println(carta1.toString()+" tiene menos valor que "+carta2.toString());
+		}else {
+			System.out.println(carta1.toString()+" tiene mas valor que "+carta2.toString());
+		}
+		
 	}
 }
