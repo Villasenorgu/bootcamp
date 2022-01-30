@@ -34,11 +34,17 @@ public class JuegoDelNumero {
 				if ((numeroIntroducido != nRandom) && intentos == 0) {
 					JOptionPane.showMessageDialog(null, "No has conseguido acertar el número");
 				} else if (numeroIntroducido > nRandom) {
-					respuesta = JOptionPane
-							.showInputDialog("El número que buscas es mas pequeño.Te quedan " + intentos + " intentos");
+					if(intentos == 1) {
+						respuesta = JOptionPane.showInputDialog("El número que buscas es mas pequeño.Te queda " + intentos + " intento");
+					}else{
+						respuesta = JOptionPane.showInputDialog("El número que buscas es mas pequeño.Te quedan " + intentos + " intentos");
+					}
 				} else {
-					respuesta = JOptionPane
-							.showInputDialog("El número que buscas es mas grande.Te quedan " + intentos + " intentos");
+					if(intentos == 1) {
+						respuesta = JOptionPane.showInputDialog("El número que buscas es mas grande.Te queda " + intentos + " intento");	
+					}else{
+						respuesta = JOptionPane.showInputDialog("El número que buscas es mas grande.Te quedan " + intentos + " intentos");
+					}
 				}
 			}
 		}
