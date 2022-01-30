@@ -29,7 +29,7 @@ public class Cartas {
 	public String getValor() {
 		return valor;
 	}
-	
+
 	public int getPuntuacion() {
 		return puntuacion;
 	}
