@@ -8,27 +8,27 @@ public class jugada {
 		var respuesta = "";
 		for (int intentos = 9; intentos >= 0; intentos--) {
 			if (respuesta.equals("")) {
-				respuesta = JOptionPane.showInputDialog("Intenta adivinarlo, introduce un número:");
+				respuesta = respuestas.primeraRespuesta();
 			}
 			int numeroIntroducido = Integer.parseInt(respuesta);
 
 			if (numeroIntroducido == nRandom) {
-				JOptionPane.showMessageDialog(null, "Has acertado!!");
+				respuestas.acertado();
 				break;
 			} else {
 				if ((numeroIntroducido != nRandom) && intentos == 0) {
-					JOptionPane.showMessageDialog(null, "No has conseguido acertar el número");
+					respuestas.noConseguido();
 				} else if (numeroIntroducido > nRandom) {
 					if(intentos == 1) {
-						respuesta = JOptionPane.showInputDialog("El número que buscas es mas pequeño.Te queda " + intentos + " intento");
+						respuesta = respuestas.masPequeno(intentos);
 					}else{
-						respuesta = JOptionPane.showInputDialog("El número que buscas es mas pequeño.Te quedan " + intentos + " intentos");
+						respuesta = respuestas.masPequeno(intentos);
 					}
 				} else {
 					if(intentos == 1) {
-						respuesta = JOptionPane.showInputDialog("El número que buscas es mas grande.Te queda " + intentos + " intento");	
+						respuesta = respuestas.masGrande(intentos);	
 					}else{
-						respuesta = JOptionPane.showInputDialog("El número que buscas es mas grande.Te quedan " + intentos + " intentos");
+						respuesta = respuestas.masGrande(intentos);
 					}
 				}
 			}
