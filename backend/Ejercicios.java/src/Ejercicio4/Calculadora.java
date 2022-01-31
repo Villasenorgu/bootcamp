@@ -34,7 +34,7 @@ public class Calculadora {
 			char operadorAnterior = operador;
 			double segundoOperando = dato;
 			operador = cad2[i].charAt(cad2[i].length()-1);
-			System.out.println(primerOperando+" "+operadorAnterior+" = "+segundoOperando);
+			System.out.println(primerOperando+" "+operadorAnterior+" "+" "+Double.parseDouble(cad2[i].substring(0, cad2[i].length()-1))+" = "+dato);
 		}
 		
 	}
