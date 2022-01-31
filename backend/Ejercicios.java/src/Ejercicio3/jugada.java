@@ -1,10 +1,9 @@
 package Ejercicio3;
 
-import javax.swing.JOptionPane;
 
 public class jugada {
 
-	public static void jugar(int nRandom) {
+	public void jugar(int nRandom) {
 		var respuesta = "";
 		for (int intentos = 9; intentos >= 0; intentos--) {
 			if (respuesta.equals("")) {

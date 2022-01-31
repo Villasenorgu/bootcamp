@@ -3,9 +3,11 @@ package Ejercicio3;
 public class JuegoDelNumero {
 
 	public static void main(String[] args) {
-
-		final int numeroSecreto = generarNumero.inicializar();
-		jugada.jugar(numeroSecreto);
+		generarNumero nuevoNumero = new generarNumero();		
+		jugada nuevaJugada = new jugada();
+		
+		int numeroSecreto = nuevoNumero.inicializar();
+		nuevaJugada.jugar(numeroSecreto);
 	}
 
 }

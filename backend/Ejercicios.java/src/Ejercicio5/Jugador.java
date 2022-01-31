@@ -19,8 +19,7 @@ public class Jugador {
 	}
 
 	/**
-	 * @param Mano
-	 * Crea una Mano dado un conjunto de cartas como ArrayList<Cartas>
+	 * @param Mano Crea una Mano dado un conjunto de cartas como ArrayList<Cartas>
 	 */
 	public void setMano(ArrayList<Cartas> Mano) {
 		this.Mano = Mano;
@@ -40,9 +39,8 @@ public class Jugador {
 
 	/**
 	 * @param Cartas
-	 * @return
-	 * dada una carta(Cartas) la añade a la mano de un jugador
-	 *  y devuelve una Arraylist<Cartas> como Mano
+	 * @return dada una carta(Cartas) la añade a la mano de un jugador y devuelve
+	 *         una Arraylist<Cartas> como Mano
 	 */
 	public ArrayList<Cartas> addCarta(Cartas Cartas) {
 		Mano.add(Cartas);

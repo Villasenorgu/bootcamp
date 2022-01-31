@@ -5,21 +5,10 @@ public class Cartas {
 	private String palo;
 	private int puntuacion;
 
-	public Cartas() {
-	}
-
 	public Cartas(String valor, String palo, int puntuacion) {
 		this.valor = valor;
 		this.palo = palo;
 		this.puntuacion = puntuacion;
-	}
-
-	public void setPalo(String palo) {
-		this.palo = palo;
-	}
-
-	public void setValor(String valor) {
-		this.valor = valor;
 	}
 
 	public String getPalo() {

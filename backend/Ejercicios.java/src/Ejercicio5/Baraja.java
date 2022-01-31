@@ -9,10 +9,9 @@ public class Baraja {
 	}
 
 	/**
-	 * @return Baraja
-	 * Devueve una baraja de poker en forma de ArrayList<Cartas> 
+	 * @return Baraja Devueve una baraja de poker en forma de ArrayList<Cartas>
 	 */
-	public static ArrayList<Cartas> iniBaraja() {
+	public ArrayList<Cartas> iniBaraja() {
 		final String[] Palo = { "Picas", "Diamantes", "Tréboles", "Corazones" };
 		final String[] Valor = { "As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 		ArrayList<Cartas> Baraja = new ArrayList<Cartas>();
@@ -31,7 +30,7 @@ public class Baraja {
 		// devuelve la baraja
 		return Baraja;
 	}
-	
+
 	public static ArrayList<Cartas> iniBarajaEspanola() {
 		final String[] Palo = { "Espadas", "Oros", "Bastos", "Copas" };
 		final String[] Valor = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "Sota", "Caballo", "Rey" };
