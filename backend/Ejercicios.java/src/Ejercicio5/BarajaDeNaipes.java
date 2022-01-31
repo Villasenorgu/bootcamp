@@ -12,6 +12,7 @@ public class BarajaDeNaipes {
 	public static void main(String[] args) {
 
 		barajaActual = Baraja.iniBaraja();
+		//barajaActual = Baraja.iniBarajaEspanola();
 		barajar(barajaActual);
 		iniJugadores("Pepe", "Juan");
 		repartir(barajaActual, 2, jugadores);
