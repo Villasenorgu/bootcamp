@@ -9,8 +9,8 @@ public class BarajaDeNaipes {
 
 		BarajaDeNaipes app = new BarajaDeNaipes();
 
-		ArrayList<Cartas> barajaActual = new ArrayList<Cartas>();
-		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		ArrayList<Cartas> barajaActual = new ArrayList<>();
+		ArrayList<Jugador> jugadores = new ArrayList<>();
 
 		Baraja Baraja = new Baraja();
 
@@ -22,7 +22,6 @@ public class BarajaDeNaipes {
 		app.repartir(barajaActual, 2, jugadores);
 		System.out.println("Baraja restante: " + barajaActual);
 		app.comparar(jugadores.get(0).getMano().get(0), jugadores.get(0).getMano().get(1));
-
 	}
 
 	/**

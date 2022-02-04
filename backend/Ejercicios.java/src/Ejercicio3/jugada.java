@@ -2,7 +2,7 @@ package Ejercicio3;
 
 
 public class jugada {
-
+	
 	public void jugar(int nRandom) {
 		var respuesta = "";
 		for (int intentos = 9; intentos >= 0; intentos--) {

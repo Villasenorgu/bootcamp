@@ -31,7 +31,7 @@ public class Baraja {
 		return Baraja;
 	}
 
-	public static ArrayList<Cartas> iniBarajaEspanola() {
+	public ArrayList<Cartas> iniBarajaEspanola() {
 		final String[] Palo = { "Espadas", "Oros", "Bastos", "Copas" };
 		final String[] Valor = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "Sota", "Caballo", "Rey" };
 		ArrayList<Cartas> Baraja = new ArrayList<Cartas>();
