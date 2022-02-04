@@ -50,8 +50,9 @@ class CalculadoraTest {
 	}
 	
 	@Test
-	void testFalloDecodificar() throws Exception{
-		assertEquals(new Exception("La cadena introducida no contiene operadores"),calc.decodificar("aaa%aaaa")[1]);
+	void testExceptionDecodificar() throws Exception{
+		Exception exception = assertThrows(Exception.class , () -> {calc.decodificar("aaaaaaaa"); });
+		assertTrue("La cadena introducida no contiene operadores".contains(exception.getMessage()));
 	}
 
 	@Test
