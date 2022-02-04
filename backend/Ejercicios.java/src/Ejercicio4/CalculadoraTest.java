@@ -71,10 +71,12 @@ class CalculadoraTest {
 	void testCalculaResta() {
 		assertEquals(-1.0,(calc.Calcula(3.0,'-',2.0)));
 	}
+	@Test
 	void testCalculaProducto() {
 		assertEquals(6.0,(calc.Calcula(2.0,'*',3.0)));
 		
 	}
+	@Test
 	void testCalculaDivision() {
 		assertEquals(1.5,(calc.Calcula(2.0,'/',3.0)));
 		assertEquals(3.0,(calc.Calcula(2.0,'=',3.0)));
