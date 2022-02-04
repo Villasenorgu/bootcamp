@@ -4,7 +4,7 @@ public class Calculadora {
 
 	public static void main(String[] args) throws Exception {
 		Calculadora app = new Calculadora();
-		String cad = "3+4+3,4-7*2=";
+		String cad = "3+2=";
 		String[] cad2 = app.decodificar(cad);
 		app.parametrizar(cad2);
 	}
@@ -19,9 +19,12 @@ public class Calculadora {
 			cad = cad.replaceAll(",", ".");
 
 		String[] cad2 = cad.split(" ");
+		System.out.println(cad);
+		System.out.println(cad2[0]);
 		
 		try {
-			if(cad2[0] == cad) {}
+			if(cad2[1] == null) {
+			}
 		} catch (Exception e) {
 			throw new Exception("La cadena introducida no contiene operadores");
 		}

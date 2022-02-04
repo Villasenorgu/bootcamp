@@ -37,16 +37,21 @@ class CalculadoraTest {
 	}
 
 	@Test
-	void testDecodificar() throws Exception {
-		assertEquals("3+",calc.decodificar("3+2*5=")[0]);
-		assertEquals("2*",calc.decodificar("3+2*5=")[1]);
-		assertEquals("5=",calc.decodificar("3+2*5=")[2]); 
+	void testDecodificar()  {
+ 
 		String[] a = {"3+","2*","5="};
-		assertEquals(a[0],calc.decodificar("3+2*5=")[0]);
-		assertEquals(a[1],calc.decodificar("3+2*5=")[1]);
-		assertEquals(a[2],calc.decodificar("3+2*5=")[2]);
-		assertEquals("hola",calc.decodificar("aaa%aaaa")[0]);
+		try {
+			assertArrayEquals(a,calc.decodificar("3+2*5="));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+	}
+	
+	@Test
+	void testFalloDecodificar() throws Exception{
+		assertEquals(new Exception("La cadena introducida no contiene operadores"),calc.decodificar("aaa%aaaa")[1]);
 	}
 
 	@Test
@@ -57,10 +62,19 @@ class CalculadoraTest {
 
 	
 	@Test
-	void testCalcula() {
+	void testCalculaSuma() {
 		assertEquals(5.0,(calc.Calcula(3.0,'+',2.0)));
+
+	}
+	@Test
+	void testCalculaResta() {
 		assertEquals(-1.0,(calc.Calcula(3.0,'-',2.0)));
+	}
+	void testCalculaProducto() {
 		assertEquals(6.0,(calc.Calcula(2.0,'*',3.0)));
+		
+	}
+	void testCalculaDivision() {
 		assertEquals(1.5,(calc.Calcula(2.0,'/',3.0)));
 		assertEquals(3.0,(calc.Calcula(2.0,'=',3.0)));
 	}
