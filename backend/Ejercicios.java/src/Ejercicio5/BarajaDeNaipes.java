@@ -15,7 +15,7 @@ public class BarajaDeNaipes {
 		Baraja Baraja = new Baraja();
 
 		barajaActual = Baraja.iniBaraja();
-		// barajaActual = Baraja.iniBarajaEspanola();
+		 //barajaActual = Baraja.iniBarajaEspanola();
 
 		app.barajar(barajaActual);
 		app.iniJugadores(jugadores, "Pepe", "Juan");

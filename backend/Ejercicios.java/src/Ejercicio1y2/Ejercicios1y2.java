@@ -13,8 +13,8 @@ public class Ejercicios1y2 {
 
 	public static void Ejercicio1() {
 		var rnd = new Random();
-		int num = rnd.nextInt(100);
-		System.out.println("Numero Secreto:" + num);
+		int numSecreto = rnd.nextInt(100);
+		System.out.println("Numero Secreto:" + numSecreto);
 
 		for (int intentos = 10; intentos > 0; intentos--) {
 			System.out.println("Intenta adivinarlo, introduce un número:");
@@ -22,10 +22,10 @@ public class Ejercicios1y2 {
 			var cad = teclado.nextLine();
 			int numeroIntroducido = Integer.parseInt(cad);
 
-			if (numeroIntroducido == num) {
+			if (numeroIntroducido == numSecreto) {
 				System.out.println("Has acertado!!");
 			} else {
-				if (numeroIntroducido > num)
+				if (numeroIntroducido > numSecreto)
 					System.out.println("El número que buscas es mas pequeño.");
 				else
 					System.out.println("El número que buscas es mas grande.");
