@@ -185,4 +185,4 @@ dist
 .pnp.*
 
 # heidi
-.heidi/*
+.heidi/**
