@@ -11,9 +11,10 @@ public class Posicion {
 	public int getColumna() {
 		return laColumna;
 	}
+	
+	public Posicion() {}
 
-
-	public Posicion(int fila, int columna) {
+	public Posicion(int columna, int fila) {
 		if(fila > 0 && fila < 9) {
 			laFila = fila;
 		} else {
@@ -26,33 +27,34 @@ public class Posicion {
 		}
 	}
 	
-	public Posicion(char fila, char columna) {
+	public Posicion(char columna, char fila) {
 		
 		fila = Character.toLowerCase(fila);
-		columna = Character.toLowerCase(columna);	
+		columna = Character.toLowerCase(columna);
+		
 		switch (fila) {
-		case 'a': {laFila =  1; break;}
-		case 'b': {laFila =  2; break;}
-		case 'c': {laFila =  3; break;}
-		case 'd': {laFila =  4; break;}
-		case 'e': {laFila =  5; break;}
-		case 'f': {laFila =  6; break;}
-		case 'g': {laFila =  7; break;}
-		case 'h': {laFila =  8; break;}
+		case 'a': {fila =  1; break;}
+		case 'b': {fila =  2; break;}
+		case 'c': {fila =  3; break;}
+		case 'd': {fila =  4; break;}
+		case 'e': {fila =  5; break;}
+		case 'f': {fila =  6; break;}
+		case 'g': {fila =  7; break;}
+		case 'h': {fila =  8; break;}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + fila);
 			
 		}
 		
 		switch(columna) {
-		case 'a': {laColumna =  1; break;}
-		case 'b': {laColumna =  2; break;}
-		case 'c': {laColumna =  3; break;}
-		case 'd': {laColumna =  4; break;}
-		case 'e': {laColumna =  5; break;}
-		case 'f': {laColumna =  6; break;}
-		case 'g': {laColumna =  7; break;}
-		case 'h': {laColumna =  8; break;}
+		case 'a': {columna =  1; break;}
+		case 'b': {columna =  2; break;}
+		case 'c': {columna =  3; break;}
+		case 'd': {columna =  4; break;}
+		case 'e': {columna =  5; break;}
+		case 'f': {columna =  6; break;}
+		case 'g': {columna =  7; break;}
+		case 'h': {columna =  8; break;}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + columna);
 		}

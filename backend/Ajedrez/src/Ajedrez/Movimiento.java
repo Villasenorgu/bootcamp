@@ -1,8 +1,9 @@
 package Ajedrez;
 
-public class Movimiento {
+public class Movimiento extends Posicion{
 	private Posicion posIni;
 	private Posicion PosFin;
+	
 	
 	public Posicion getPosIni() {
 		return posIni;
@@ -20,29 +21,56 @@ public class Movimiento {
 		PosFin = posFin;
 	}
 
-	public Movimiento(String movimiento) {
-		
+	public Movimiento(String movimiento){
+		if(movimiento.length() == 4) {
+			var columnaIni = movimiento.charAt(0);
+			var filaIni = movimiento.charAt(1);
+			posIni = new Posicion(columnaIni,filaIni);
+			var columnaFin = movimiento.charAt(2);
+			var filaFin = movimiento.charAt(3);
+			posIni = new Posicion(columnaFin,filaFin);
+		}else {
+			throw new IllegalArgumentException("El movimiento debe ser en nomenclatura internacionar A1B2");
+		}
 	}
 	
 	public boolean EsVertical() {
-		return true;
+		if(posIni.getColumna() == PosFin.getColumna() && posIni.getFila() != PosFin.getFila()) {
+			return true;
+		}else {return false;}
 	}
 	public boolean EsHorizontal() {
-		return true;
+		if(posIni.getColumna() != PosFin.getColumna() && posIni.getFila() == PosFin.getFila()) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	public boolean EsDiagonal() {
-		return true;
+		if(Math.abs(posIni.getColumna()-PosFin.getColumna()) == Math.abs(posIni.getFila()-PosFin.getFila())) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	public int SaltoVertical() {
-		return 1;
+		return posIni.getColumna()-PosFin.getColumna();
 	}
 	public int SaltoHorizaontal() {
-		return 1;
+		return posIni.getColumna()-PosFin.getColumna();
 	}
 	public int deltaFila() {
-		return 1;
+		if(SaltoVertical() == Math.abs(SaltoVertical())) {
+			return 1;
+		}else {
+			return -1;
+		}
 	}
 	public int deltaColumna() {
-		return 1;
+		if(SaltoHorizaontal() == Math.abs(SaltoHorizaontal())) {
+			return 1;
+		}else {
+			return -1;
+		}
 	}
 }
