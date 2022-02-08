@@ -13,4 +13,8 @@ public abstract class Pieza {
 	public Pieza(Color color){
 		
 	}
+	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
+		return true;
+	}
+	public void Mover(Movimiento movimiento, Tablero tablero) {}
 }
