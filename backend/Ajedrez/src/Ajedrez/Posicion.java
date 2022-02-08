@@ -14,8 +14,16 @@ public class Posicion {
 
 
 	public Posicion(int fila, int columna) {
-		laFila = fila;
+		if(fila > 0 && fila < 9) {
+			laFila = fila;
+		} else {
+			throw new IllegalArgumentException("Valor inesperado: " + fila + " .Requiere un valor entre 0 y 8");
+		}
+		if(columna > 0 && columna < 9) {
 		laColumna = columna;
+		} else {
+			throw new IllegalArgumentException("Valor inesperado: " + columna + " .Requiere un valor entre 0 y 8");
+		}
 	}
 	
 	public Posicion(char fila, char columna) {
