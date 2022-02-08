@@ -2,9 +2,10 @@ package Ejercicio5;
 
 import java.util.ArrayList;
 
-public class Jugador {
+public class Jugador{
 	private String nombre = new String();
 	private ArrayList<Cartas> Mano = new ArrayList<Cartas>();
+	private boolean ciega = false;
 
 	public Jugador() {
 
@@ -31,6 +32,14 @@ public class Jugador {
 
 	public ArrayList<Cartas> getMano() {
 		return Mano;
+	}
+	
+	public boolean getCiega() {
+		return ciega;
+	}
+	
+	public void setCiega(boolean ciega) {
+		this.ciega = ciega;
 	}
 
 	public String toString() {

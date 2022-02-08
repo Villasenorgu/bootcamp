@@ -4,6 +4,7 @@ public class Cartas {
 	private String valor;
 	private String palo;
 	private int puntuacion;
+	private boolean bocaArriba = true;
 
 	public Cartas(String valor, String palo, int puntuacion) {
 		this.valor = valor;
@@ -24,7 +25,24 @@ public class Cartas {
 	}
 
 	public String toString() {
-		return this.getValor() + " de " + this.getPalo();
+		if(this.estaBocaArriba()) {
+			return this.getValor() + " de " + this.getPalo();
+		}else {
+			return "Carta boca abajo";
+		}
+		
+	}
+	
+	public boolean estaBocaArriba() {
+		return bocaArriba;
+	}
+	
+	public void voltearBocaAbajo() {
+		this.bocaArriba = false;
+	}
+	
+	public void voltearBocaArriba() {
+		this.bocaArriba = true;
 	}
 
 }

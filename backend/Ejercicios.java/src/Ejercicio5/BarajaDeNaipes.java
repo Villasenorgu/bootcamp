@@ -13,14 +13,20 @@ public class BarajaDeNaipes {
 		ArrayList<Jugador> jugadores = new ArrayList<>();
 
 		Baraja Baraja = new Baraja();
+		CartasEnMesa mesa = new CartasEnMesa();
+		MazoDescartes descartes = new MazoDescartes();
 
 		barajaActual = Baraja.iniBaraja();
 		 //barajaActual = Baraja.iniBarajaEspanola();
 
 		app.barajar(barajaActual);
 		app.iniJugadores(jugadores, "Pepe", "Juan");
-		app.repartir(barajaActual, 2, jugadores);
+		app.repartirJugadores(barajaActual, 2, jugadores);
 		System.out.println("Baraja restante: " + barajaActual);
+		app.repartirMesa(barajaActual, 3, mesa);
+		System.out.println("Cartas en Mesa: " + mesa);
+		app.voltearMesa(mesa);
+		System.out.println("Cartas en Mesa: " + mesa);
 		app.comparar(jugadores.get(0).getMano().get(0), jugadores.get(0).getMano().get(1));
 	}
 
@@ -50,14 +56,16 @@ public class BarajaDeNaipes {
 	/**
 	 * @param Baraja
 	 * @param cartasARepartir
-	 * @param jugadores       A partir de un ArrayList<Cartas> , el numero de cartas
+	 * @param jugadores       
+	 * 						A partir de un ArrayList<Cartas> , el numero de cartas
 	 *                        a repartir para cada jugador(int) y una lista de
 	 *                        jugadores(ArrayList<Jugador>) reparte de forma alterna
 	 *                        entre los jugadores el número de cartas enviado si hay
 	 *                        cartas suficientes en el mazo.
 	 * 
 	 */
-	public void repartir(ArrayList<Cartas> Baraja, int cartasARepartir, ArrayList<Jugador> jugadores) {
+
+	public void repartirJugadores(ArrayList<Cartas> Baraja, int cartasARepartir, ArrayList<Jugador> jugadores) {
 		for (int i = 0; i < cartasARepartir; i++) {
 			if (cartasARepartir <= Baraja.size()) {
 				for (Jugador j : jugadores) {
@@ -65,6 +73,20 @@ public class BarajaDeNaipes {
 					Baraja.remove(0);
 					System.out.println(j.toString());
 				}
+			} else {
+				System.out.println("No quedan cartas suficientes para repartir al total de jugadores");
+			}
+		}
+
+	}
+	public void repartirMesa(ArrayList<Cartas> Baraja, int cartasARepartir, CartasEnMesa mesa) {
+		for (int i = 0; i < cartasARepartir; i++) {
+			if (cartasARepartir <= Baraja.size()) {				
+					mesa.addCarta(Baraja.get(0));
+					if(mesa.getCartasEnMesa().get(i).estaBocaArriba()) {
+					mesa.getCartasEnMesa().get(i).voltearBocaAbajo();
+					}
+					Baraja.remove(0);				
 			} else {
 				System.out.println("No quedan cartas suficientes para repartir al total de jugadores");
 			}
@@ -88,5 +110,19 @@ public class BarajaDeNaipes {
 			System.out.println(carta1.toString() + " tiene mas valor que " + carta2.toString());
 		}
 
+	}
+	
+	public void voltearMesa(CartasEnMesa mesa) {
+		for (int i = 0; i < mesa.getCartasEnMesa().size(); i++) {
+			mesa.getCartasEnMesa().get(i).voltearBocaArriba();
+		}
+	}
+	
+	public void descartar(MazoDescartes descartes) {
+		
+	}
+	
+	public String quienGana() {
+		return "Gana tal";
 	}
 }
