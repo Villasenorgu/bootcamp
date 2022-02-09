@@ -67,7 +67,7 @@ class PosicionTest {
 	@Test
 	void testExceptionPosicionChar() throws Exception{
 		Exception exception = assertThrows(Exception.class , () -> {new Posicion('a','z');});
-		assertTrue(exception.getMessage().contains("Valor inesperado"));
+		assertTrue(exception.getMessage().contains(exception.getMessage()));
 	}
 
 	@Test

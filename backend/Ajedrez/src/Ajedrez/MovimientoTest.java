@@ -11,6 +11,12 @@ import org.junit.jupiter.api.Test;
 class MovimientoTest {
 
 	Movimiento movimiento = new Movimiento("B1C2");
+	Movimiento mDiagonal = new Movimiento("b2c3");
+	Movimiento mHorizontal = new Movimiento("a1f1");
+	Movimiento mVertical = new Movimiento("a1a6");
+	Movimiento mHorizontalN = new Movimiento("f1a1");
+	Movimiento mVerticalN = new Movimiento("a6a1");
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -31,50 +37,40 @@ class MovimientoTest {
 	void testGetPosIni() {
 		assertTrue(this.movimiento.getPosIni().Equals(new Movimiento("b1c2").getPosIni()));
 	}
-	
-	@Test
-	void testGetPosFin() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	void testMovimiento() {
-		fail("Not yet implemented"); // TODO
-	}
 
 	@Test
 	void testEsVertical() {
-		fail("Not yet implemented"); // TODO
+		 assertEquals(true, mVertical.EsVertical());
 	}
 
 	@Test
 	void testEsHorizontal() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, mHorizontal.EsHorizontal());
 	}
 
 	@Test
 	void testEsDiagonal() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(true, mDiagonal.EsDiagonal());
 	}
 
 	@Test
 	void testSaltoVertical() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(5, mVertical.SaltoVertical());
 	}
 
 	@Test
-	void testSaltoHorizaontal() {
-		fail("Not yet implemented"); // TODO
+	void testSaltoHorizontal() {
+		assertEquals(0, mHorizontal.SaltoVertical());
 	}
 
 	@Test
 	void testDeltaFila() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(-1, mHorizontalN.deltaFila());
 	}
 
 	@Test
 	void testDeltaColumna() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(-1, mVerticalN.deltaColumna());
 	}
 
 }
