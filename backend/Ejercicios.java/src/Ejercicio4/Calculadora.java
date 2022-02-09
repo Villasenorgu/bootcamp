@@ -1,14 +1,60 @@
 package Ejercicio4;
+import java.io.BufferedWriter;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner; // Import the Scanner class to read text files
 
 public class Calculadora {
 
 	public static void main(String[] args) throws Exception {
+		
 		Calculadora app = new Calculadora();
-		String cad = "3+2=";
+		
+		String cad = app.LeerArchivo();
 		String[] cad2 = app.decodificar(cad);
-		app.parametrizar(cad2);
+		double resultado = app.parametrizar(cad2);
+		app.EscribirResultado(cad2,resultado);
+		
 	}
 
+	public String LeerArchivo() {
+		try {
+		      File archivo = new File("C:\\curso\\backend\\Ejercicios.java\\src\\Ejercicio4\\Archivo.txt");
+		      Scanner lector = new Scanner(archivo);
+		      while (lector.hasNextLine()) {
+		    	return lector.nextLine().toString();
+		      }
+		      lector.close();
+		    } catch (FileNotFoundException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		      return "error";
+		    }
+		return "";
+	}
+	
+	
+	public void EscribirResultado(String[] cad2,double resultado) throws IOException {
+		try {
+	      File archivo = new File("C:\\curso\\backend\\Ejercicios.java\\src\\Ejercicio4\\Salida.txt");
+	      BufferedWriter writer = new BufferedWriter(new FileWriter(archivo));
+	      for (int i = 0; i < cad2.length; i++) {
+				writer.write(cad2[i]);
+				writer.newLine();
+			}
+	      writer.write("--------------");
+	      writer.newLine();
+	      writer.write(String.valueOf(resultado));
+	      writer.newLine();
+	      writer.close();
+		}catch (FileNotFoundException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
+	
 	public String[] decodificar(String cad) throws Exception {
 		
 			cad = cad.replaceAll("\\+", "\\+ ");
@@ -20,7 +66,6 @@ public class Calculadora {
 
 		String[] cad2 = cad.split(" ");
 		System.out.println(cad);
-		System.out.println(cad2[0]);
 		
 		try {
 			if(cad2[1] == null) {
