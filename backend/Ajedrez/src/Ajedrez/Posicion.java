@@ -28,21 +28,21 @@ public class Posicion {
 	}
 	
 	public Posicion(char columna, char fila) {
-		if(Character.isLetter(columna) && Character.isLetter(fila)) {
+		if(Character.isLetter(columna) && !Character.isLetter(fila)) {
 			fila = Character.toLowerCase(fila);
 			columna = Character.toLowerCase(columna);
 			
 			switch (fila) {
-			case 'a': {laFila =  1; break;}
-			case 'b': {laFila =  2; break;}
-			case 'c': {laFila =  3; break;}
-			case 'd': {laFila =  4; break;}
-			case 'e': {laFila =  5; break;}
-			case 'f': {laFila =  6; break;}
-			case 'g': {laFila =  7; break;}
-			case 'h': {laFila =  8; break;}
+			case '1': {laFila =  1; break;}
+			case '2': {laFila =  2; break;}
+			case '3': {laFila =  3; break;}
+			case '4': {laFila =  4; break;}
+			case '5': {laFila =  5; break;}
+			case '6': {laFila =  6; break;}
+			case '7': {laFila =  7; break;}
+			case '8': {laFila =  8; break;}
 			default:
-				throw new IllegalArgumentException("Unexpected value: " + fila);
+				throw new IllegalArgumentException("Valor inesperado: " + fila);
 				
 			}
 			
@@ -56,7 +56,7 @@ public class Posicion {
 			case 'g': {laColumna =  7; break;}
 			case 'h': {laColumna =  8; break;}
 			default:
-				throw new IllegalArgumentException("Unexpected value: " + columna);
+				throw new IllegalArgumentException("Valor inesperado: " + columna);
 			}
 		}else {
 			throw new IllegalArgumentException("Ni fila ni columna pueden ser nulos");

@@ -4,7 +4,6 @@ public class Movimiento extends Posicion{
 	private Posicion posIni;
 	private Posicion PosFin;
 	
-	
 	public Posicion getPosIni() {
 		return posIni;
 	}
@@ -18,19 +17,15 @@ public class Movimiento extends Posicion{
 	}
 
 	public void setPosFin(Posicion posFin) {
-		PosFin = posFin;
+		this.PosFin = posFin;
 	}
 
 	public Movimiento(String movimiento){
 		if(movimiento.length() == 4) {
-			var columnaIni = movimiento.charAt(0);
-			var filaIni = movimiento.charAt(1);
-			posIni = new Posicion(columnaIni,filaIni);
-			var columnaFin = movimiento.charAt(2);
-			var filaFin = movimiento.charAt(3);
-			posIni = new Posicion(columnaFin,filaFin);
+			this.posIni = new Posicion(movimiento.charAt(0),movimiento.charAt(1));
+			this.PosFin = new Posicion(movimiento.charAt(2),movimiento.charAt(3));
 		}else {
-			throw new IllegalArgumentException("El movimiento debe ser en nomenclatura internacionar A1B2");
+			throw new IllegalArgumentException("El movimiento debe ser en nomenclatura internacional A1B2");
 		}
 	}
 	

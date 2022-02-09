@@ -13,7 +13,7 @@ class PosicionTest {
 	Posicion posicion = new Posicion(2,1);
 	char x;
 	char y;
-	Posicion posicionConChar = new Posicion('a','g');
+	Posicion posicionConChar = new Posicion('a','7');
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -57,21 +57,17 @@ class PosicionTest {
 		assertInstanceOf(Posicion.class, posicion);
 		
 	}
-
-	@Test
-	void testPosicionIntInt() {
-		fail("Not yet implemented"); // TODO
-	}
 	
 	@Test
 	void testExceptionPosicion() throws Exception{
 		Exception exception = assertThrows(Exception.class , () -> {new Posicion(-1,0);});
 		assertTrue(exception.getMessage().contains("Valor inesperado"));
 	}
-
+	
 	@Test
-	void testPosicionCharChar() {
-		fail("Not yet implemented"); // TODO
+	void testExceptionPosicionChar() throws Exception{
+		Exception exception = assertThrows(Exception.class , () -> {new Posicion('a','z');});
+		assertTrue(exception.getMessage().contains("Valor inesperado"));
 	}
 
 	@Test
