@@ -55,7 +55,7 @@ public class Movimiento extends Posicion{
 	public int SaltoVertical() {
 		return PosFin.getFila()-PosIni.getFila();
 	}
-	public int SaltoHorizaontal() {
+	public int SaltoHorizontal() {
 		return PosFin.getColumna()-PosIni.getColumna();
 	}
 	public int deltaFila() {
@@ -66,7 +66,7 @@ public class Movimiento extends Posicion{
 		}
 	}
 	public int deltaColumna() {
-		if(SaltoHorizaontal() != Math.abs(SaltoHorizaontal())) {
+		if(SaltoHorizontal() != Math.abs(SaltoHorizontal())) {
 			return 1;
 		}else {
 			return -1;

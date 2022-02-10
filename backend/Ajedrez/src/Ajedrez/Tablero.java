@@ -32,7 +32,7 @@ public class Tablero {
 			return false;
 	}
 	public boolean hayPieza(Posicion posicion) {
-		if(piezas[posicion.getColumna()][posicion.getFila()] != null)
+		if(piezas[posicion.getColumna()-1][posicion.getFila()-1] != null)
 			return true;
 		else
 			return false;
@@ -44,10 +44,13 @@ public class Tablero {
 		piezas[posicion.getColumna()][posicion.getFila()] = null;
 	}
 	public void Mover(Movimiento movimiento) {
-		
-		//Habria que comprobar si el movimiento es valido etc etc
-		if(hayPieza(movimiento.getPosIni())) {
-			piezas[movimiento.getPosFin().getColumna()][movimiento.getPosFin().getFila()] = piezas[movimiento.getPosIni().getColumna()][movimiento.getPosIni().getFila()];			
+		if(!HayPiezasEntre(movimiento)) {
+			if(hayPieza(movimiento.getPosIni())) {
+				if(piezas[movimiento.getPosIni().getColumna()][movimiento.getPosIni().getFila()].esValido(movimiento, Tablero.this)) {			
+					piezas[movimiento.getPosFin().getColumna()][movimiento.getPosFin().getFila()] = piezas[movimiento.getPosIni().getColumna()][movimiento.getPosIni().getFila()];
+					piezas[movimiento.getPosIni().getColumna()][movimiento.getPosIni().getFila()] = null;
+				}
+			}
 		}
 	}
 	public Object Clone(Tablero tablero) {
@@ -60,6 +63,19 @@ public class Tablero {
 			throw new IllegalArgumentException("No hay pieza");
 	}
 	public boolean HayPiezasEntre(Movimiento movimiento) {
-		return true;
+		int aumentoH;
+		int aumentoV;
+		for(int i = 1; i < Math.max(movimiento.SaltoHorizontal(),movimiento.SaltoVertical())-1; i++) {
+			if(movimiento.SaltoHorizontal()>0) {
+				aumentoH = movimiento.getPosIni().getColumna()+i;
+			}else aumentoH = 0;
+			if(movimiento.SaltoHorizontal()>0) {
+				aumentoV = movimiento.getPosIni().getFila()+i;			
+			}else aumentoV = 0;
+			if(hayPieza(movimiento.getPosIni().getColumna()+aumentoH,movimiento.getPosIni().getFila()+aumentoV)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
