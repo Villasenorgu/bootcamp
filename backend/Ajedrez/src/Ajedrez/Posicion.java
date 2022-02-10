@@ -30,7 +30,6 @@ public class Posicion {
 	public Posicion(char columna, char fila) {
 		if(Character.isLetter(columna) && !Character.isLetter(fila)) {
 			fila = Character.toLowerCase(fila);
-			columna = Character.toLowerCase(columna);
 			
 			switch (fila) {
 			case '1': {laFila =  1; break;}

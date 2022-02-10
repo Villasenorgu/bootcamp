@@ -11,7 +11,7 @@ public abstract class Pieza {
 		this.elColor = elColor;
 	}
 	public Pieza(Color color){
-		
+		this.elColor = color;
 	}
 	protected abstract boolean esValido(Movimiento movimiento, Tablero tablero);
 	public void Mover(Movimiento movimiento, Tablero tablero) {}

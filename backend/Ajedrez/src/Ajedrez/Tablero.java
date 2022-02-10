@@ -1,13 +1,38 @@
 package Ajedrez;
 
 public class Tablero {
-	private Pieza[][] piezas = new Pieza[7][7];
+	
+	private Pieza[][] piezas = new Pieza[8][8];
+	
+	public Tablero() {
+		
+		piezas[0][0] = new Torre(Color.BLANCO);
+		piezas[1][0] = new Caballo(Color.BLANCO);
+		piezas[2][0] = new Alfil(Color.BLANCO);
+		piezas[3][0] = new Reina(Color.BLANCO);
+		piezas[4][0] = new Rey(Color.BLANCO);
+		piezas[5][0] = new Alfil(Color.BLANCO);
+		piezas[6][0] = new Caballo(Color.BLANCO);
+		piezas[7][0] = new Torre(Color.BLANCO);
+		for(int i = 0; i < 8 ; i++) {
+			piezas[i][1] = new Peon(Color.BLANCO);
+			piezas[i][6] = new Peon(Color.NEGRO);
+		}
+		piezas[0][7] = new Torre(Color.NEGRO);
+		piezas[1][7] = new Caballo(Color.NEGRO);
+		piezas[2][7] = new Alfil(Color.NEGRO);
+		piezas[3][7] = new Reina(Color.NEGRO);
+		piezas[4][7] = new Rey(Color.NEGRO);
+		piezas[5][7] = new Alfil(Color.NEGRO);
+		piezas[6][7] = new Caballo(Color.NEGRO);
+		piezas[7][7] = new Torre(Color.NEGRO);
+	}
 	
 	public Pieza Escaque(int columna, int fila) {
 		if(piezas[columna-1][fila-1] != null)
-			throw new IllegalArgumentException("No hay pieza");
+			return piezas[columna-1][fila-1];		
 		else {
-			return piezas[columna-1][fila-1];
+			throw new IllegalArgumentException("No hay pieza");
 		}
 	}
 	public Pieza Escaque(Posicion posicion) {
@@ -26,7 +51,7 @@ public class Tablero {
 	}
 	
 	public boolean hayPieza(int columna, int fila) {
-		if(	piezas[columna][fila] != null)
+		if(	piezas[columna-1][fila-1] != null)
 			return true;
 		else
 			return false;

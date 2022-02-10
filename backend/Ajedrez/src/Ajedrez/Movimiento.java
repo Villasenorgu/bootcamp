@@ -24,7 +24,7 @@ public class Movimiento extends Posicion{
 		if(movimiento.length() == 4) {
 			this.PosIni = new Posicion(movimiento.charAt(0),movimiento.charAt(1));
 			this.PosFin = new Posicion(movimiento.charAt(2),movimiento.charAt(3));
-			if(PosIni.Equals(PosFin)) {
+			if(!this.PosIni.Equals(this.PosFin)) {
 			}else {
 				throw new IllegalArgumentException("Las Posiciones no pueden ser la misma para un movimiento");
 			}

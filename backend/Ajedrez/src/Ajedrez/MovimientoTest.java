@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class MovimientoTest {
 
 	Movimiento movimiento = new Movimiento("B1C2");
-	Movimiento mDiagonal = new Movimiento("b2c3");
+	Movimiento mDiagonal = new Movimiento("c3b2");
 	Movimiento mHorizontal = new Movimiento("a1f1");
 	Movimiento mVertical = new Movimiento("a1a6");
 	Movimiento mHorizontalN = new Movimiento("f1a1");
@@ -32,7 +32,13 @@ class MovimientoTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-
+	
+	@Test
+	void testExceptionMovimientoConMismasPosiciones() throws Exception{
+		Exception exception = assertThrows(Exception.class , () -> {new Movimiento("a1a1");});
+		assertTrue(exception.getMessage().contains(exception.getMessage()));
+	}
+	
 	@Test
 	void testGetPosIni() {
 		assertTrue(this.movimiento.getPosIni().Equals(new Movimiento("b1c2").getPosIni()));

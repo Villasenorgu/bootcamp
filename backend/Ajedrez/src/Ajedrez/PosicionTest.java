@@ -51,12 +51,6 @@ class PosicionTest {
 	void testGetColumnaChar() {
 		assertEquals(1, posicionConChar.getColumna() );
 	}
-
-	@Test
-	void testPosicion() {
-		assertInstanceOf(Posicion.class, posicion);
-		
-	}
 	
 	@Test
 	void testExceptionPosicion() throws Exception{
@@ -69,10 +63,20 @@ class PosicionTest {
 		Exception exception = assertThrows(Exception.class , () -> {new Posicion('a','z');});
 		assertTrue(exception.getMessage().contains(exception.getMessage()));
 	}
+	
+	@Test
+	void testExceptionPosicionNula() throws Exception{
+		Exception exception = assertThrows(Exception.class , () -> {new Posicion(x,y);});
+		assertTrue(exception.getMessage().contains(exception.getMessage()));
+	}
 
 	@Test
 	void testEquals() {
 		assertEquals(true,posicion.Equals(new Posicion(2,1)));
 	}
-
+	
+	@Test
+	void testEqualsFalse() {
+		assertEquals(false,posicion.Equals(new Posicion(2,2)));
+	}
 }
