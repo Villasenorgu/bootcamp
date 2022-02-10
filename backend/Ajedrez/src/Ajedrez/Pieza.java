@@ -13,8 +13,6 @@ public abstract class Pieza {
 	public Pieza(Color color){
 		
 	}
-	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
-		return true;
-	}
+	protected abstract boolean esValido(Movimiento movimiento, Tablero tablero);
 	public void Mover(Movimiento movimiento, Tablero tablero) {}
 }

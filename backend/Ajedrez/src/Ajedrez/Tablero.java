@@ -67,10 +67,10 @@ public class Tablero {
 		int aumentoV;
 		for(int i = 1; i < Math.max(movimiento.SaltoHorizontal(),movimiento.SaltoVertical())-1; i++) {
 			if(movimiento.SaltoHorizontal()>0) {
-				aumentoH = movimiento.getPosIni().getColumna()+i;
+				aumentoH = movimiento.getPosIni().getColumna()+(i*movimiento.deltaColumna());
 			}else aumentoH = 0;
 			if(movimiento.SaltoHorizontal()>0) {
-				aumentoV = movimiento.getPosIni().getFila()+i;			
+				aumentoV = movimiento.getPosIni().getFila()+(i*movimiento.deltaColumna());			
 			}else aumentoV = 0;
 			if(hayPieza(movimiento.getPosIni().getColumna()+aumentoH,movimiento.getPosIni().getFila()+aumentoV)) {
 				return true;
