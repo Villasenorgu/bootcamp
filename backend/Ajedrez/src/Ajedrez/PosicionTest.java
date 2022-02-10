@@ -39,17 +39,17 @@ class PosicionTest {
 	
 	@Test
 	void testGetFilaChar() {
-		assertEquals(7, posicionConChar.getFila() );
+		assertEquals(7, posicionConChar.getFila());
 	}
 
 	@Test
 	void testGetColumna() {
-		assertEquals(2, posicion.getColumna() );
+		assertEquals(2, posicion.getColumna());
 	}
 	
 	@Test
 	void testGetColumnaChar() {
-		assertEquals(1, posicionConChar.getColumna() );
+		assertEquals(1, posicionConChar.getColumna());
 	}
 	
 	@Test

@@ -36,10 +36,10 @@ public class Tablero {
 		}
 	}
 	public Pieza Escaque(Posicion posicion) {
-		if(piezas[posicion.getColumna()][posicion.getFila()] != null)
-			throw new IllegalArgumentException("No hay pieza");
+		if(piezas[posicion.getColumna()-1][posicion.getFila()-1] != null)
+			return piezas[posicion.getColumna()-1][posicion.getFila()-1];
 		else {
-		return piezas[posicion.getColumna()][posicion.getFila()];
+			throw new IllegalArgumentException("No hay pieza");
 		}
 	}
 	
@@ -63,17 +63,17 @@ public class Tablero {
 			return false;
 	}
 	public void QuitaPieza(int columna, int fila) {
-		piezas[columna][fila] = null;
+		piezas[columna-1][fila-1] = null;
 	}
 	public void QuitaPieza(Posicion posicion) {
-		piezas[posicion.getColumna()][posicion.getFila()] = null;
+		piezas[posicion.getColumna()-1][posicion.getFila()-1] = null;
 	}
 	public void Mover(Movimiento movimiento) {
 		if(!HayPiezasEntre(movimiento)) {
 			if(hayPieza(movimiento.getPosIni())) {
-				if(piezas[movimiento.getPosIni().getColumna()][movimiento.getPosIni().getFila()].esValido(movimiento, Tablero.this)) {			
-					piezas[movimiento.getPosFin().getColumna()][movimiento.getPosFin().getFila()] = piezas[movimiento.getPosIni().getColumna()][movimiento.getPosIni().getFila()];
-					piezas[movimiento.getPosIni().getColumna()][movimiento.getPosIni().getFila()] = null;
+				if(piezas[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1].esValido(movimiento, Tablero.this)) {			
+					piezas[movimiento.getPosFin().getColumna()-1][movimiento.getPosFin().getFila()-1] = piezas[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1];
+					piezas[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1] = null;
 				}
 			}
 		}

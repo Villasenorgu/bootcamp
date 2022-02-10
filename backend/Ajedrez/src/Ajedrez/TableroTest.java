@@ -31,8 +31,6 @@ class TableroTest {
 
 	@Test
 	void testEscaqueIntInt() {
-		Pieza[][] piezas = new Pieza[8][8];
-		piezas[4][0] = new Rey(Color.BLANCO);
 		assertEquals(new Rey(Color.BLANCO).getElColor(),tablero.Escaque(4, 1).getElColor());
 	}
 	
@@ -44,27 +42,39 @@ class TableroTest {
 
 	@Test
 	void testEscaquePosicion() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(new Rey(Color.BLANCO).getElColor(),tablero.Escaque(new Posicion(4,1)).getElColor());
 	}
 
 	@Test
 	void testHayPiezaIntInt() {
-		fail("Not yet implemented"); // TODO
+		assertTrue(tablero.hayPieza(1,1));
+	}
+	
+	@Test
+	void testNoHayPiezaIntInt() {
+		assertFalse(tablero.hayPieza(5,5));
 	}
 
 	@Test
 	void testHayPiezaPosicion() {
-		fail("Not yet implemented"); // TODO
+		assertTrue(tablero.hayPieza(new Posicion(1,1)));
+	}
+	
+	@Test
+	void testNoHayPiezaPosicion() {
+		assertFalse(tablero.hayPieza(new Posicion(5,5)));
 	}
 
 	@Test
 	void testQuitaPiezaIntInt() {
-		fail("Not yet implemented"); // TODO
+		tablero.QuitaPieza(1, 1);
+		assertFalse(tablero.hayPieza(1,1));
 	}
 
 	@Test
 	void testQuitaPiezaPosicion() {
-		fail("Not yet implemented"); // TODO
+		tablero.QuitaPieza(new Posicion(1,1));
+		assertFalse(tablero.hayPieza(1,1));
 	}
 
 	@Test
@@ -79,12 +89,17 @@ class TableroTest {
 
 	@Test
 	void testColorEscaque() {
-		fail("Not yet implemented"); // TODO
+		assertTrue(tablero.ColorEscaque(2, 2) == Color.BLANCO);
 	}
 
 	@Test
+	void testNoHayPiezasEntre() {
+		assertFalse(tablero.HayPiezasEntre(new Movimiento("b2b7")));
+	}
+	
+	@Test
 	void testHayPiezasEntre() {
-		fail("Not yet implemented"); // TODO
+		assertTrue(tablero.HayPiezasEntre(new Movimiento("b2b8")));
 	}
 
 }
