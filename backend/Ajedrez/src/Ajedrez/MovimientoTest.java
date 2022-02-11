@@ -13,7 +13,7 @@ class MovimientoTest {
 	Movimiento movimiento = new Movimiento("B1C2");
 	Movimiento mDiagonal = new Movimiento("c3b2");
 	Movimiento mHorizontal = new Movimiento("a1f1");
-	Movimiento mVertical = new Movimiento("a1a6");
+	Movimiento mVertical = new Movimiento("b2b8");
 	Movimiento mHorizontalN = new Movimiento("f1a1");
 	Movimiento mVerticalN = new Movimiento("a6a1");
 	
@@ -46,7 +46,7 @@ class MovimientoTest {
 
 	@Test
 	void testEsVertical() {
-		 assertEquals(true, mVertical.EsVertical());
+		 assertTrue(mVertical.EsVertical());
 	}
 
 	@Test
@@ -58,10 +58,15 @@ class MovimientoTest {
 	void testEsDiagonal() {
 		assertEquals(true, mDiagonal.EsDiagonal());
 	}
+	
+	@Test
+	void testNoEsDiagonal() {
+		assertEquals(false, mVertical.EsDiagonal());
+	}
 
 	@Test
 	void testSaltoVertical() {
-		assertEquals(5, mVertical.SaltoVertical());
+		assertEquals(6, mVertical.SaltoVertical());
 	}
 
 	@Test
@@ -71,12 +76,12 @@ class MovimientoTest {
 
 	@Test
 	void testDeltaFila() {
-		assertEquals(-1, mHorizontalN.deltaFila());
+		assertEquals(1, mHorizontal.deltaFila());
 	}
 
 	@Test
 	void testDeltaColumna() {
-		assertEquals(-1, mVerticalN.deltaColumna());
+		assertEquals(1, mVertical.deltaColumna());
 	}
 
 }

@@ -47,7 +47,7 @@ class TableroTest {
 
 	@Test
 	void testHayPiezaIntInt() {
-		assertTrue(tablero.hayPieza(1,1));
+		assertTrue(tablero.hayPieza(8,8));
 	}
 	
 	@Test
@@ -79,7 +79,7 @@ class TableroTest {
 
 	@Test
 	void testMover() {
-		fail("Not yet implemented"); // TODO
+		tablero.Mover(new Movimiento("b2b7"));
 	}
 
 	@Test

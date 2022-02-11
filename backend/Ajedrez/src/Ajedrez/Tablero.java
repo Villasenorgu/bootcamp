@@ -88,19 +88,29 @@ public class Tablero {
 			throw new IllegalArgumentException("No hay pieza");
 	}
 	public boolean HayPiezasEntre(Movimiento movimiento) {
-		int aumentoH;
-		int aumentoV;
-		for(int i = 1; i < Math.max(movimiento.SaltoHorizontal(),movimiento.SaltoVertical())-1; i++) {
-			if(movimiento.SaltoHorizontal()>0) {
-				aumentoH = movimiento.getPosIni().getColumna()+(i*movimiento.deltaColumna());
-			}else aumentoH = 0;
-			if(movimiento.SaltoHorizontal()>0) {
-				aumentoV = movimiento.getPosIni().getFila()+(i*movimiento.deltaColumna());			
-			}else aumentoV = 0;
-			if(hayPieza(movimiento.getPosIni().getColumna()+aumentoH,movimiento.getPosIni().getFila()+aumentoV)) {
-				return true;
+		if(hayPieza(movimiento.getPosIni().getColumna(), movimiento.getPosIni().getFila())){
+			if(movimiento.EsDiagonal()) {
+				for(int i = 1; i < Math.abs(movimiento.SaltoHorizontal()) ; i++ ) {
+					if(hayPieza(movimiento.getPosIni().getColumna()+(i*movimiento.deltaColumna()), movimiento.getPosIni().getFila()+(i*movimiento.deltaFila()))) {
+						return true;
+					}
+				}
 			}
-		}
+			if(movimiento.EsHorizontal()) {	
+				for(int i = 1; i < Math.abs(movimiento.SaltoHorizontal()) ; i++ ) {
+					if(hayPieza(movimiento.getPosIni().getColumna()+(i*movimiento.deltaColumna()), movimiento.getPosIni().getFila())) {
+						return true;
+					}
+				}
+			}
+			if(movimiento.EsVertical()) {
+				for(int i = 1; i < Math.abs(movimiento.SaltoVertical()) ; i++ ) {
+					if(hayPieza(movimiento.getPosIni().getColumna(), movimiento.getPosIni().getFila()+(i*movimiento.deltaFila()))) {
+						return true;
+					}
+				}
+			}
+		}		
 		return false;
 	}
 }

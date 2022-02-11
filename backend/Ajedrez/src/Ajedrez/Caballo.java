@@ -8,6 +8,11 @@ public class Caballo extends Pieza {
 	}
 	
 	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
-		return true;
+		if ((movimiento.SaltoHorizontal() == 2*movimiento.deltaFila() && movimiento.SaltoVertical() == 1*movimiento.deltaColumna())||(movimiento.SaltoHorizontal() == 1*movimiento.deltaFila() && movimiento.SaltoVertical() == 2*movimiento.deltaColumna())) {
+			if ((tablero.hayPieza(movimiento.getPosFin()) && tablero.Escaque(movimiento.getPosFin()).getElColor() != this.getElColor())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

@@ -34,19 +34,19 @@ public class Movimiento extends Posicion{
 	}
 	
 	public boolean EsVertical() {
-		if(PosIni.getColumna() == PosFin.getColumna() && PosIni.getFila() != PosFin.getFila()) {
+		if(PosIni.getFila() != PosFin.getFila() && PosIni.getColumna() == PosFin.getColumna()) {
 			return true;
 		}else {return false;}
 	}
 	public boolean EsHorizontal() {
-		if(PosIni.getColumna() != PosFin.getColumna() && PosIni.getFila() == PosFin.getFila()) {
+		if(PosIni.getFila() == PosFin.getFila() && PosIni.getColumna() != PosFin.getColumna()) {
 			return true;
 		}else {
 			return false;
 		}
 	}
 	public boolean EsDiagonal() {
-		if(EsHorizontal() == EsVertical()) {
+		if (!EsHorizontal() && !EsVertical()) {
 			return true;
 		}else {
 			return false;
@@ -59,14 +59,14 @@ public class Movimiento extends Posicion{
 		return PosFin.getColumna()-PosIni.getColumna();
 	}
 	public int deltaFila() {
-		if(SaltoVertical() != Math.abs(SaltoVertical())) {
+		if(SaltoVertical() == Math.abs(SaltoVertical())) {
 			return 1;
 		}else {
 			return -1;
 		}
 	}
 	public int deltaColumna() {
-		if(SaltoHorizontal() != Math.abs(SaltoHorizontal())) {
+		if(SaltoHorizontal() == Math.abs(SaltoHorizontal())) {
 			return 1;
 		}else {
 			return -1;
