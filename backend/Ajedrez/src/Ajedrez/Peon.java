@@ -8,13 +8,23 @@ public class Peon extends Pieza {
 	}
 	
 	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
-		return true;
+		if (this.Avanza(movimiento)) {
+			if ((!tablero.hayPieza(movimiento.getPosFin()))) {
+				return true;
+			}
+			else if(this.PuedeComer(movimiento, tablero)) {
+			return true;
+			}
+		}return false;
 	}
 	
 	public void Promocion(Object pieza, PromocionEventArgs evento) {}
 	
 	private boolean Avanza(Movimiento movimiento) {
-		return true;
+		if ((movimiento.SaltoHorizontal() == 0 && movimiento.SaltoVertical() == 1*movimiento.deltaColumna())) {
+			return true;
+		}	
+		return false;
 	}
 	
 	private boolean Iniciar(Posicion posicion) {
@@ -22,11 +32,23 @@ public class Peon extends Pieza {
 	}
 	
 	private boolean PuedeComer(Movimiento movimiento, Tablero tablero) {
-		return true;
+		if(movimiento.EsDiagonal() && movimiento.SaltoHorizontal() == 1*movimiento.deltaFila() && tablero.hayPieza(movimiento.getPosFin()) && (tablero.Escaque(movimiento.getPosFin()).getElColor() != this.getElColor())) {
+			return true;
+			}
+		return false;
 	}
 	
 	private boolean NecesitaPromocion(Posicion posicion) {
-		return true;
+		if(this.getElColor() == Color.BLANCO) {
+			if(posicion.getColumna() == 8) {
+				return true;
+			}
+		}else {
+			if(posicion.getColumna() == 1) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void Mover(Movimiento movimiento, Tablero tablero) {
