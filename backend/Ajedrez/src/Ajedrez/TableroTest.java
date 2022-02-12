@@ -31,26 +31,9 @@ class TableroTest {
 	void tearDown() throws Exception {
 	}
 
-//	@Test
-//	void testEscaqueIntInt() {
-//		assertEquals(new Rey(Color.BLANCO).getElColor(),tablero.Escaque(4, 1).getElColor());
-//	}
-//	
-//	@Test
-//	void testExceptionEscaqueIntInt() {
-//		Exception exception = assertThrows(Exception.class , () -> {tablero.Escaque(5, 5);});
-//		assertTrue(exception.getMessage().contains(exception.getMessage()));
-//		Exception exception2 = assertThrows(Exception.class , () -> {tablero.Escaque(new Posicion(23,23));});
-//		assertTrue(exception2.getMessage().contains(exception2.getMessage()));
-//	}
-//
-//	@Test
-//	void testEscaquePosicion() {
-//		assertEquals(new Rey(Color.BLANCO).getElColor(),tablero.Escaque(new Posicion(4,1)).getElColor());
-//	}
-
 	@Test
 	void testHayPiezaIntInt() {
+		tablero.setPieza(new Posicion(8,8), new Torre(Color.NEGRO));
 		assertTrue(tablero.hayPieza(8,8));
 	}
 	
@@ -61,6 +44,7 @@ class TableroTest {
 
 	@Test
 	void testHayPiezaPosicion() {
+		tablero.setPieza(new Posicion(1,1), new Torre(Color.NEGRO));
 		assertTrue(tablero.hayPieza(new Posicion(1,1)));
 	}
 	
@@ -98,7 +82,8 @@ class TableroTest {
 
 	@Test
 	void testColorEscaque() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(Color.NEGRO.toString(),tablero.ColorEscaque(1, 1).toString());
+		assertEquals(Color.BLANCO.toString(),tablero.ColorEscaque(1, 2).toString());
 	}
 
 	@Test
@@ -108,7 +93,27 @@ class TableroTest {
 	
 	@Test
 	void testHayPiezasEntre() {
+		tablero.setPieza(new Posicion(2,6), new Torre(Color.BLANCO));
+		tablero.setPieza(new Posicion(2,2), new Torre(Color.BLANCO));
 		assertTrue(tablero.HayPiezasEntre(new Movimiento("b2b8")));
 	}
-
+	@Test
+	void mainTest() {
+		Juego juego = new Juego();
+		juego.inicializar();
+		juego.Jugada("b1c3");
+		juego.Jugada("c7c6");
+		juego.Jugada("c3d5");
+		juego.Jugada("c6d5");
+		juego.Jugada("h2h3");
+		juego.Jugada("b7b6");
+		juego.Jugada("h3h4");
+		juego.Jugada("c8a6");
+		juego.Jugada("h1h3");
+		juego.Jugada("d7d6");
+		juego.Jugada("h3g3");
+		juego.Jugada("d8d7");
+		juego.Jugada("g3f3");
+		juego.Jugada("e8d8");
+	}
 }

@@ -13,7 +13,7 @@ public class Juego {
 	}
 	
 	public static Tablero getTablero() {
-		return elTablero;	
+		return Juego.elTablero;	
 	}
 	
 	public Color getTurno() {
@@ -51,7 +51,10 @@ public class Juego {
 	}
 	
 	private void Mover(Movimiento movimiento) {
+		if( Juego.elTablero.getPieza(movimiento.getPosIni()).getElColor().toString() == getTurno().toString()) {
 		elTablero.Mover(movimiento);
+		CambiaTurno();
+		}
 	}
 	
 	private void CambiaTurno() {
@@ -67,13 +70,21 @@ public class Juego {
 	public static void main(String[] args) {
 		Juego juego = new Juego();
 		juego.inicializar();
-		juego.elTablero.Clone(juego.getTablero());
+		Juego.elTablero.Clone(Juego.getTablero());
 		juego.Jugada("b1c3");
 		juego.Jugada("c7c6");
 		juego.Jugada("c3d5");
 		juego.Jugada("c6d5");
+		juego.Jugada("h2h3");
 		juego.Jugada("b7b6");
+		juego.Jugada("h3h4");
 		juego.Jugada("c8a6");
+		juego.Jugada("h1h3");
+		juego.Jugada("d7d6");
+		juego.Jugada("h3g3");
+		juego.Jugada("d8d7");
+		juego.Jugada("g3f3");
+		juego.Jugada("e8d8");
 		
 	}
 
