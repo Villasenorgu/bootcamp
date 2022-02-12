@@ -7,7 +7,7 @@ public class Rey extends Pieza {
 
 	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
 		if (movimiento.SaltoHorizontal() <= 1 && movimiento.SaltoVertical() <= 1) {
-			if ((tablero.hayPieza(movimiento.getPosFin()) && tablero.Escaque(movimiento.getPosFin()).getElColor() != this.getElColor())
+			if ((tablero.hayPieza(movimiento.getPosFin()) && tablero.getPieza(movimiento.getPosFin()).getElColor() != this.getElColor())
 					|| !tablero.hayPieza(movimiento.getPosFin())) {
 				return true;
 			}

@@ -1,6 +1,6 @@
 package Ajedrez;
 
-public abstract class Pieza {
+public abstract class Pieza{
 	private Color elColor;
 
 	public Color getElColor() {

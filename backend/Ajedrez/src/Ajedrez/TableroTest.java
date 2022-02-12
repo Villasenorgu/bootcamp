@@ -12,6 +12,8 @@ class TableroTest {
 	
 	Tablero tablero = new Tablero();
 	
+	
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		
@@ -29,21 +31,23 @@ class TableroTest {
 	void tearDown() throws Exception {
 	}
 
-	@Test
-	void testEscaqueIntInt() {
-		assertEquals(new Rey(Color.BLANCO).getElColor(),tablero.Escaque(4, 1).getElColor());
-	}
-	
-	@Test
-	void testExceptionEscaqueIntInt() {
-		Exception exception = assertThrows(Exception.class , () -> {tablero.Escaque(5, 5);});
-		assertTrue(exception.getMessage().contains(exception.getMessage()));
-	}
-
-	@Test
-	void testEscaquePosicion() {
-		assertEquals(new Rey(Color.BLANCO).getElColor(),tablero.Escaque(new Posicion(4,1)).getElColor());
-	}
+//	@Test
+//	void testEscaqueIntInt() {
+//		assertEquals(new Rey(Color.BLANCO).getElColor(),tablero.Escaque(4, 1).getElColor());
+//	}
+//	
+//	@Test
+//	void testExceptionEscaqueIntInt() {
+//		Exception exception = assertThrows(Exception.class , () -> {tablero.Escaque(5, 5);});
+//		assertTrue(exception.getMessage().contains(exception.getMessage()));
+//		Exception exception2 = assertThrows(Exception.class , () -> {tablero.Escaque(new Posicion(23,23));});
+//		assertTrue(exception2.getMessage().contains(exception2.getMessage()));
+//	}
+//
+//	@Test
+//	void testEscaquePosicion() {
+//		assertEquals(new Rey(Color.BLANCO).getElColor(),tablero.Escaque(new Posicion(4,1)).getElColor());
+//	}
 
 	@Test
 	void testHayPiezaIntInt() {
@@ -79,7 +83,12 @@ class TableroTest {
 
 	@Test
 	void testMover() {
-		tablero.Mover(new Movimiento("b2b7"));
+		
+		tablero.Mover(new Movimiento("c7c6"));
+		tablero.Mover(new Movimiento("b1c3"));
+		tablero.Mover(new Movimiento("c3d5"));
+		tablero.Mover(new Movimiento("c6d5"));
+		
 	}
 
 	@Test

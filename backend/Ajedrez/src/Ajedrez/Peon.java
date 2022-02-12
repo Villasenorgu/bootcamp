@@ -21,7 +21,7 @@ public class Peon extends Pieza {
 	public void Promocion(Object pieza, PromocionEventArgs evento) {}
 	
 	private boolean Avanza(Movimiento movimiento) {
-		if ((movimiento.SaltoHorizontal() == 0 && movimiento.SaltoVertical() == 1*movimiento.deltaColumna())) {
+		if (( movimiento.SaltoVertical() == 1*movimiento.deltaColumna())&& movimiento.SaltoHorizontal() == 0) {
 			return true;
 		}	
 		return false;
@@ -32,7 +32,7 @@ public class Peon extends Pieza {
 	}
 	
 	private boolean PuedeComer(Movimiento movimiento, Tablero tablero) {
-		if(movimiento.EsDiagonal() && movimiento.SaltoHorizontal() == 1*movimiento.deltaFila() && tablero.hayPieza(movimiento.getPosFin()) && (tablero.Escaque(movimiento.getPosFin()).getElColor() != this.getElColor())) {
+		if(movimiento.EsDiagonal() && movimiento.SaltoHorizontal() == 1*movimiento.deltaFila() && tablero.hayPieza(movimiento.getPosFin()) && (tablero.getPieza(movimiento.getPosFin()).getElColor() != this.getElColor())) {
 			return true;
 			}
 		return false;
@@ -52,7 +52,9 @@ public class Peon extends Pieza {
 	}
 	
 	public void Mover(Movimiento movimiento, Tablero tablero) {
-		
+		if(this.esValido(movimiento, tablero)&&this.Avanza(movimiento)) {
+			tablero.setPieza(movimiento.getPosFin(), this);
+		}
 	}
 	
 	protected void onPromocion(PromocionEventArgs evento) {

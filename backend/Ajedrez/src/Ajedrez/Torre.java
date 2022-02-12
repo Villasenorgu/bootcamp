@@ -9,7 +9,7 @@ public class Torre extends Pieza {
 	
 	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
 		if (movimiento.EsVertical() | movimiento.EsHorizontal()) {
-			if ((tablero.hayPieza(movimiento.getPosFin()) && tablero.Escaque(movimiento.getPosFin()).getElColor() != this.getElColor())) {
+			if ((tablero.hayPieza(movimiento.getPosFin()) && tablero.getPieza(movimiento.getPosFin()).getElColor() != this.getElColor())) {
 				return true;
 			}
 		}
