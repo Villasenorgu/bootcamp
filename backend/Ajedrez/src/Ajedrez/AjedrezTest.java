@@ -56,10 +56,10 @@ class AjedrezTest {
 		Juego juego = new Juego();
 		juego.inicializar();
 		juego.Jugada("c7c6");
-//		juego.Jugada("b1c3");
-//		juego.Jugada("c3d5");
-//		juego.Jugada("c6d5");
-//		juego.Jugada("b7b6");
+		juego.Jugada("b1c3");
+		juego.Jugada("c3d5");
+		juego.Jugada("c6d5");
+		juego.Jugada("b7b6");
 	}
 
 }
