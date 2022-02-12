@@ -98,7 +98,7 @@ class TableroTest {
 
 	@Test
 	void testColorEscaque() {
-		assertTrue(tablero.ColorEscaque(2, 2) == Color.BLANCO);
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test

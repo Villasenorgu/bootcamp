@@ -12,10 +12,10 @@ public class Peon extends Pieza {
 			if ((!tablero.hayPieza(movimiento.getPosFin()))) {
 				return true;
 			}
-			else if(this.PuedeComer(movimiento, tablero)) {
+		}else if(PuedeComer(movimiento, tablero)) {
 			return true;
 			}
-		}return false;
+		return false;
 	}
 	
 	public void Promocion(Object pieza, PromocionEventArgs evento) {}
@@ -32,9 +32,9 @@ public class Peon extends Pieza {
 	}
 	
 	private boolean PuedeComer(Movimiento movimiento, Tablero tablero) {
-		if(movimiento.EsDiagonal() && movimiento.SaltoHorizontal() == 1*movimiento.deltaFila() && tablero.hayPieza(movimiento.getPosFin()) && (tablero.getPieza(movimiento.getPosFin()).getElColor() != this.getElColor())) {
+		if(movimiento.EsDiagonal() && movimiento.SaltoHorizontal() == 1*movimiento.deltaFila() && tablero.hayPieza(movimiento.getPosFin()) && (tablero.getPieza(movimiento.getPosFin()).getElColor().toString() != tablero.getPieza(movimiento.getPosIni()).getElColor().toString())) {
 			return true;
-			}
+		}
 		return false;
 	}
 	
@@ -52,8 +52,10 @@ public class Peon extends Pieza {
 	}
 	
 	public void Mover(Movimiento movimiento, Tablero tablero) {
-		if(this.esValido(movimiento, tablero)&&this.Avanza(movimiento)) {
-			tablero.setPieza(movimiento.getPosFin(), this);
+		if(esValido(movimiento, tablero)&&Avanza(movimiento)) {
+			tablero.QuitaPieza(movimiento.getPosFin());
+			tablero.setPieza(movimiento.getPosFin(), tablero.getPiezas()[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1]);
+			
 		}
 	}
 	

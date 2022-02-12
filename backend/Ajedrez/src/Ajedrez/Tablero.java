@@ -5,15 +5,15 @@ public class Tablero {
 	private Pieza[][] piezas = new Pieza[8][8];
 	
 	public Pieza getPieza(int columna, int fila) {
-		if(getPiezas()[columna][fila] != null)
-			return getPiezas()[columna][fila];		
+		if(getPiezas()[columna-1][fila-1] != null)
+			return getPiezas()[columna-1][fila-1];		
 		else {
 			throw new IllegalArgumentException("No hay pieza");
 		}
 	}
 	public Pieza getPieza(Posicion posicion) {
-		if(getPiezas()[posicion.getColumna()][posicion.getFila()] != null)
-			return getPiezas()[posicion.getColumna()][posicion.getFila()];
+		if(getPiezas()[posicion.getColumna()-1][posicion.getFila()-1] != null)
+			return getPiezas()[posicion.getColumna()-1][posicion.getFila()-1];
 		else {
 			throw new IllegalArgumentException("No hay pieza");
 		}
@@ -24,7 +24,7 @@ public class Tablero {
 		
 	}
 	public void setPieza(Posicion posicion, Pieza pieza) {
-		getPiezas()[posicion.getColumna()][posicion.getFila()] = pieza;	
+		getPiezas()[posicion.getColumna()-1][posicion.getFila()-1] = pieza;	
 	}
 	
 	private boolean esValido(int valido) {
@@ -41,7 +41,7 @@ public class Tablero {
 			return false;
 	}
 	public boolean hayPieza(Posicion posicion) {
-		if(getPiezas()[posicion.getColumna()][posicion.getFila()] != null)
+		if(getPiezas()[posicion.getColumna()-1][posicion.getFila()-1] != null)
 			return true;
 		else
 			return false;
@@ -50,19 +50,43 @@ public class Tablero {
 		getPiezas()[columna-1][fila-1] = null;
 	}
 	public void QuitaPieza(Posicion posicion) {
-		getPiezas()[posicion.getColumna()][posicion.getFila()] = null;
+		getPiezas()[posicion.getColumna()-1][posicion.getFila()-1] = null;
 	}
 	public void Mover(Movimiento movimiento) {
-		if(!HayPiezasEntre(movimiento)) {
-			if(hayPieza(movimiento.getPosIni().getColumna(),movimiento.getPosIni().getFila())) {
+		if(hayPieza(movimiento.getPosIni().getColumna(),movimiento.getPosIni().getFila()) && getPiezas()[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1].getClass() == Peon.class) {
+			if(!HayPiezasEntre(movimiento)) {
+				if(hayPieza(movimiento.getPosIni().getColumna(),movimiento.getPosIni().getFila())) {
+					if(hayPieza(movimiento.getPosFin())) {
+							getPiezas()[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1].Mover(movimiento, Juego.getTablero());
+							QuitaPieza(movimiento.getPosIni());
+					}else {
+						piezas[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1].Mover(movimiento, Juego.getTablero());
+						QuitaPieza(movimiento.getPosIni());
+					}
+				}
+			}
+		}
+		if(hayPieza(movimiento.getPosIni().getColumna(),movimiento.getPosIni().getFila()) && getPiezas()[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1].getClass() == Caballo.class) {	
+			if(getPiezas()[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1].esValido(movimiento, Juego.getTablero())) {
 				if(hayPieza(movimiento.getPosFin())) {
-					System.out.println(Juego.getTablero().getPieza(movimiento.getPosIni()));
-						QuitaPieza(movimiento.getPosFin());
-						getPiezas()[movimiento.getPosIni().getColumna()][movimiento.getPosIni().getFila()].Mover(movimiento, Juego.getTablero());
-							
-					
+					QuitaPieza(movimiento.getPosFin());
+					setPieza(movimiento.getPosFin(), getPiezas()[movimiento.getPosFin().getColumna()-1][movimiento.getPosFin().getFila()-1]);
+					QuitaPieza(movimiento.getPosIni());
 				}else {
-					piezas[movimiento.getPosIni().getColumna()][movimiento.getPosIni().getFila()].Mover(movimiento, Juego.getTablero());
+					setPieza(movimiento.getPosFin(), getPiezas()[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1]);
+					QuitaPieza(movimiento.getPosIni());
+				}
+			}
+		}
+		if(hayPieza(movimiento.getPosIni().getColumna(),movimiento.getPosIni().getFila()) && !HayPiezasEntre(movimiento)) {	
+			if(getPiezas()[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1].esValido(movimiento, Juego.getTablero())) {
+				if(hayPieza(movimiento.getPosFin())) {
+					QuitaPieza(movimiento.getPosFin());
+					setPieza(movimiento.getPosFin(), getPiezas()[movimiento.getPosFin().getColumna()-1][movimiento.getPosFin().getFila()-1]);
+					QuitaPieza(movimiento.getPosIni());
+				}else {
+					setPieza(movimiento.getPosFin(), getPiezas()[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1]);
+					QuitaPieza(movimiento.getPosIni());
 				}
 			}
 		}
@@ -71,10 +95,9 @@ public class Tablero {
 		return piezas.clone();
 	}
 	public Color ColorEscaque(int columna, int fila) {
-		if(getPiezas()[columna][fila] != null)
-			return getPiezas()[columna][fila].getElColor();
-		else
-			throw new IllegalArgumentException("No hay pieza");
+		if(columna%2!=0 && fila%2!=0)
+	        return Color.NEGRO;
+	    return Color.BLANCO;
 	}
 	public boolean HayPiezasEntre(Movimiento movimiento) {
 		if(hayPieza(movimiento.getPosIni().getColumna(), movimiento.getPosIni().getFila())){

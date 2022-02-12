@@ -59,14 +59,14 @@ public class Movimiento extends Posicion{
 		return PosFin.getColumna()-PosIni.getColumna();
 	}
 	public int deltaFila() {
-		if(SaltoVertical() == Math.abs(SaltoVertical())) {
+		if(SaltoHorizontal() == Math.abs(SaltoHorizontal())) {
 			return 1;
 		}else {
 			return -1;
 		}
 	}
 	public int deltaColumna() {
-		if(SaltoHorizontal() == Math.abs(SaltoHorizontal())) {
+		if(SaltoVertical() == Math.abs(SaltoVertical())) {
 			return 1;
 		}else {
 			return -1;

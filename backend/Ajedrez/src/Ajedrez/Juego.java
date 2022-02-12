@@ -68,16 +68,12 @@ public class Juego {
 		Juego juego = new Juego();
 		juego.inicializar();
 		juego.elTablero.Clone(juego.getTablero());
-
+		juego.Jugada("b1c3");
 		juego.Jugada("c7c6");
-
-//		juego.Jugada("b1c3");
-//		juego.Jugada("c3d5");
-//		juego.Jugada("c6d5");
-//		juego.Jugada("b7b6");
-//		juego.Jugada("c8a6");
-		
-		
+		juego.Jugada("c3d5");
+		juego.Jugada("c6d5");
+		juego.Jugada("b7b6");
+		juego.Jugada("c8a6");
 		
 	}
 
