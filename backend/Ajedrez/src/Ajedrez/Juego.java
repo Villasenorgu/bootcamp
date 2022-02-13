@@ -43,17 +43,24 @@ public class Juego {
 		elTablero.setPieza(6,8,new Alfil(Color.NEGRO)); 
 		elTablero.setPieza(7,8,new Caballo(Color.NEGRO)); 
 		elTablero.setPieza(8,8,new Torre(Color.NEGRO)); 
-	};
+		
+	}
 	
 	public void Jugada(String jugada) {
-		Movimiento movimiento = new Movimiento(jugada);
-		Mover(movimiento);
+		if(partidaActiva) {
+			Movimiento movimiento = new Movimiento(jugada);
+			Mover(movimiento);
+		}else {
+			throw new IllegalArgumentException("Partida no activa");
+		}
 	}
 	
 	private void Mover(Movimiento movimiento) {
 		if( Juego.elTablero.getPieza(movimiento.getPosIni()).getElColor().toString() == getTurno().toString()) {
 		elTablero.Mover(movimiento);
 		CambiaTurno();
+		}else {
+			throw new IllegalArgumentException("Color de la Pieza no válido, juega jugador: "+getTurno().toString());
 		}
 	}
 	
@@ -70,6 +77,7 @@ public class Juego {
 	public static void main(String[] args) {
 		Juego juego = new Juego();
 		juego.inicializar();
+		juego.partidaActiva = true;
 		Juego.elTablero.Clone(Juego.getTablero());
 		juego.Jugada("b1c3");
 		juego.Jugada("c7c6");

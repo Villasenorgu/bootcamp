@@ -75,10 +75,6 @@ class TableroTest {
 		
 	}
 
-	@Test
-	void testClone() {
-		fail("Not yet implemented"); // TODO
-	}
 
 	@Test
 	void testColorEscaque() {

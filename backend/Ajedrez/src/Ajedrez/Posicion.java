@@ -4,16 +4,27 @@ public class Posicion {
 	private int laFila;
 	private int laColumna;
 	
+	/**
+	 * @return laFila de una posición
+	 */
 	public int getFila() {
 		return laFila;
 	}
 	
+	/**
+	 * @return laColumna de una posición
+	 */
 	public int getColumna() {
 		return laColumna;
 	}
 	
 	public Posicion() {}
 
+	/**
+	 * Recibe una posicion en forma de enteros,la valida y la guarda
+	 * @param columna Entero entre 1 y 8
+	 * @param fila Entero entre 1 y 8
+	 */
 	public Posicion(int columna, int fila) {
 		if(fila > 0 && fila < 9) {
 			laFila = fila;
@@ -27,6 +38,11 @@ public class Posicion {
 		}
 	}
 	
+	/**
+	 * Recibe una posicion en formato internacional de ajedrez(Caracter(A-H), Caracter(1-8)),la valida, las transforma en enteros y la guarda
+	 * @param columna Caracter entre A y H
+	 * @param fila Caracter entre 1 y 8
+	 */
 	public Posicion(char columna, char fila) {
 		if(Character.isLetter(columna) && !Character.isLetter(fila)) {
 			columna = Character.toLowerCase(columna);
@@ -63,6 +79,11 @@ public class Posicion {
 		
 	}
 
+	/**
+	 * Comprueba si dos posiciones son iguales
+	 * @param posicion Posicion con la que comparar
+	 * @return True si ambas posiciones coinciden
+	 */
 	public boolean Equals(Posicion posicion) {
 		if(posicion.laColumna == this.laColumna && posicion.laFila == this.laFila) {
 			return true;
