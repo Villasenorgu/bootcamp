@@ -16,6 +16,8 @@ ORDER BY title
 
 ·Mostrar la lista de las películas mas caras (coste por minuto)
 
-SELECT title, rental_rate, length FROM film
+SELECT title, rental_rate, length, rental_rate/LENGTH AS precioMinuto FROM film
 ORDER BY rental_rate/LENGTH DESC
+
+·Obtener los códigos y medias de gasto de los clientes que han gastado mas de 100 en menos de 25 operaciones.
 
