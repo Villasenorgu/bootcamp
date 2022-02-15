@@ -12,8 +12,8 @@ class MovimientoTest {
 
 	Movimiento movimiento = new Movimiento("B1C2");
 	Movimiento mDiagonal = new Movimiento("c3b2");
-	Movimiento mHorizontal = new Movimiento("a1f1");
-	Movimiento mVertical = new Movimiento("b2b8");
+	Movimiento mHorizontal = new Movimiento("b2g2");
+	Movimiento mVertical = new Movimiento("a1a8");
 	Movimiento mHorizontalN = new Movimiento("f1a1");
 	Movimiento mVerticalN = new Movimiento("a6a1");
 	
@@ -66,7 +66,7 @@ class MovimientoTest {
 
 	@Test
 	void testSaltoVertical() {
-		assertEquals(6, mVertical.SaltoVertical());
+		assertEquals(7, mVertical.SaltoVertical());
 	}
 
 	@Test

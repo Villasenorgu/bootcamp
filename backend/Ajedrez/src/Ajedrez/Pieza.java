@@ -6,14 +6,14 @@ public abstract class Pieza{
 	public Color getElColor() {
 		return elColor;
 	}
-
-	public void setElColor(Color elColor) {
-		this.elColor = elColor;
-	}
 	public Pieza(Color color){
 		this.elColor = color;
 	}
 	protected abstract boolean esValido(Movimiento movimiento, Tablero tablero);
 	public void Mover(Movimiento movimiento, Tablero tablero) {
+		if(esValido(movimiento, tablero))
+			tablero.Mover(movimiento);
+		else
+			throw new IllegalArgumentException("No es un movimiento valido");
 	}
 }

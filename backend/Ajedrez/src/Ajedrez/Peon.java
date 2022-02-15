@@ -32,7 +32,7 @@ public class Peon extends Pieza {
 	}
 	
 	private boolean PuedeComer(Movimiento movimiento, Tablero tablero) {
-		if(movimiento.EsDiagonal() && movimiento.SaltoHorizontal() == 1*movimiento.deltaFila() && tablero.hayPieza(movimiento.getPosFin()) && (tablero.getPieza(movimiento.getPosFin()).getElColor().toString() != tablero.getPieza(movimiento.getPosIni()).getElColor().toString())) {
+		if(movimiento.EsDiagonal() && movimiento.SaltoHorizontal() == 1*movimiento.deltaFila() && tablero.hayPieza(movimiento.getPosFin()) && (tablero.getPieza(movimiento.getPosFin()).getElColor().toString() != this.getElColor().toString())) {
 			return true;
 		}
 		return false;
@@ -54,7 +54,7 @@ public class Peon extends Pieza {
 	public void Mover(Movimiento movimiento, Tablero tablero) {
 		if(esValido(movimiento, tablero)&&Avanza(movimiento)) {
 			tablero.QuitaPieza(movimiento.getPosFin());
-			tablero.setPieza(movimiento.getPosFin(), tablero.getPiezas()[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1]);
+			tablero.setPieza(movimiento.getPosFin(), this);
 			
 		}
 	}

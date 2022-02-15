@@ -7,13 +7,9 @@ public class Reina extends Pieza {
 		
 	}
 	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
-		if (movimiento.EsHorizontal() || movimiento.EsVertical() || movimiento.EsDiagonal()) {
-			if ((tablero.hayPieza(movimiento.getPosFin()) && tablero.getPieza(movimiento.getPosFin()).getElColor().toString() != tablero.getPieza(movimiento.getPosIni()).getElColor().toString())) {
+		if ((movimiento.EsHorizontal() || movimiento.EsVertical() || movimiento.EsDiagonal()) && !tablero.HayPiezasEntre(movimiento)) {
 				return true;
-			}else if(!tablero.hayPieza(movimiento.getPosFin())){
-				return true;
-			}
-		}
+			}		
 		return false;
 	}
 

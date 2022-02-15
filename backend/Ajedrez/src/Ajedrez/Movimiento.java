@@ -16,7 +16,10 @@ public class Movimiento extends Posicion{
 	 * @param posIni Una posicion
 	 */
 	public void setPosIni(Posicion posIni) {
-		this.PosIni = posIni;
+		if(posIni != null)
+			this.PosIni = posIni;
+		else
+			throw new IllegalArgumentException("Posicion inicial nula");
 	}
 
 	/**
@@ -30,7 +33,10 @@ public class Movimiento extends Posicion{
 	 * @param posFin Una posicion
 	 */
 	public void setPosFin(Posicion posFin) {
+		if(posFin != null)
 		this.PosFin = posFin;
+		else
+			throw new IllegalArgumentException("Posicion final nula");
 	}
 
 	/**
@@ -72,7 +78,7 @@ public class Movimiento extends Posicion{
 	 * @return Devuelve True si el movimiento es diagonal, False si no lo es
 	 */
 	public boolean EsDiagonal() {
-		if (!EsHorizontal() && !EsVertical()) {
+		if ( SaltoVertical() == SaltoHorizontal()) {
 			return true;
 		}else {
 			return false;
@@ -82,29 +88,29 @@ public class Movimiento extends Posicion{
 	 * @return Devuelve Entero con el numero de posiciones de diferencia en un movimiento Vertical y su dirección(+ o-)
 	 */
 	public int SaltoVertical() {
-		return PosFin.getFila()-PosIni.getFila();
+		return Math.abs(PosFin.getFila()-PosIni.getFila());
 	}
 	/**
 	 * @return Devuelve Entero con el numero de posiciones de diferencia en un movimiento Horizontal y su dirección(+ o-)
 	 */
 	public int SaltoHorizontal() {
-		return PosFin.getColumna()-PosIni.getColumna();
+		return Math.abs(PosFin.getColumna()-PosIni.getColumna());
 	}
-	/**
-	 * @return Devuelve Entero 1 si la direccion del movimiento Horizontal es positiva y -1 si no lo es
-	 */
+
 	public int deltaFila() {
-		if(SaltoHorizontal() == Math.abs(SaltoHorizontal())) {
+		if(PosIni.getColumna() == PosFin.getColumna()){
+			return 0;
+		}else if(PosFin.getColumna() > PosIni.getColumna()){
 			return 1;
 		}else {
 			return -1;
 		}
 	}
-	/**
-	 * @return Devuelve Entero 1 si la direccion del movimiento Vertical es positiva y -1 si no lo es
-	 */
+
 	public int deltaColumna() {
-		if(SaltoVertical() == Math.abs(SaltoVertical())) {
+		if(PosIni.getFila() == PosFin.getFila()){
+			return 0;
+		}else if(PosFin.getFila() > PosIni.getFila()){
 			return 1;
 		}else {
 			return -1;

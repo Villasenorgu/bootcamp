@@ -1,10 +1,8 @@
 package Ajedrez;
 
-import java.awt.Event;
-
 public class Juego {
 		
-	private static Tablero elTablero = new Tablero();
+	private Tablero elTablero = new Tablero();
 	private Color elTurno = Color.BLANCO ;
 	private boolean partidaActiva = false;
 	
@@ -12,8 +10,8 @@ public class Juego {
 		
 	}
 	
-	public static Tablero getTablero() {
-		return Juego.elTablero;	
+	public Tablero getTablero() {
+		return (Tablero) elTablero.clone();	
 	}
 	
 	public Color getTurno() {
@@ -21,8 +19,6 @@ public class Juego {
 	}
 	public void inicializar() {
 		partidaActiva = true;
-		Pieza[][] piezas;
-		piezas = elTablero.getPiezas();
 		elTablero.setPieza(1,1,new Torre(Color.BLANCO)); 
 		elTablero.setPieza(2,1,new Caballo(Color.BLANCO)); 
 		elTablero.setPieza(3,1,new Alfil(Color.BLANCO)); 
@@ -56,7 +52,7 @@ public class Juego {
 	}
 	
 	private void Mover(Movimiento movimiento) {
-		if( Juego.elTablero.getPieza(movimiento.getPosIni()).getElColor().toString() == getTurno().toString()) {
+		if( elTablero.getPieza(movimiento.getPosIni()).getElColor().toString() == getTurno().toString()) {
 		elTablero.Mover(movimiento);
 		CambiaTurno();
 		}else {
@@ -78,7 +74,7 @@ public class Juego {
 		Juego juego = new Juego();
 		juego.inicializar();
 		juego.partidaActiva = true;
-		Juego.elTablero.Clone(Juego.getTablero());
+		juego.getTablero();
 		juego.Jugada("b1c3");
 		juego.Jugada("c7c6");
 		juego.Jugada("c3d5");
