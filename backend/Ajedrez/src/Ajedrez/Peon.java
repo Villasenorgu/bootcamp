@@ -21,7 +21,9 @@ public class Peon extends Pieza {
 	public void Promocion(Object pieza, PromocionEventArgs evento) {}
 	
 	private boolean Avanza(Movimiento movimiento) {
-		if (( movimiento.SaltoVertical() == 1*movimiento.deltaColumna())&& movimiento.SaltoHorizontal() == 0) {
+		if (((movimiento.getPosIni().getFila() == 2 && this.getElColor().toString() == Color.BLANCO.toString() && movimiento.SaltoVertical() == (1|2)) 
+			|| movimiento.getPosIni().getFila() == 7 && this.getElColor().toString() == Color.BLANCO.toString() && movimiento.SaltoVertical() == (1|2))
+				||( movimiento.SaltoVertical() == 1 && movimiento.SaltoHorizontal() == 0)) {
 			return true;
 		}	
 		return false;
@@ -32,7 +34,7 @@ public class Peon extends Pieza {
 	}
 	
 	private boolean PuedeComer(Movimiento movimiento, Tablero tablero) {
-		if(movimiento.EsDiagonal() && movimiento.SaltoHorizontal() == 1*movimiento.deltaFila() && tablero.hayPieza(movimiento.getPosFin()) && (tablero.getPieza(movimiento.getPosFin()).getElColor().toString() != this.getElColor().toString())) {
+		if(movimiento.EsDiagonal() && movimiento.SaltoHorizontal() == 1 && tablero.hayPieza(movimiento.getPosFin()) && (tablero.getPieza(movimiento.getPosFin()).getElColor().toString() != this.getElColor().toString())) {
 			return true;
 		}
 		return false;
@@ -51,11 +53,10 @@ public class Peon extends Pieza {
 		return false;
 	}
 	
+	@Override
 	public void Mover(Movimiento movimiento, Tablero tablero) {
 		if(esValido(movimiento, tablero)&&Avanza(movimiento)) {
-			tablero.QuitaPieza(movimiento.getPosFin());
-			tablero.setPieza(movimiento.getPosFin(), this);
-			
+			tablero.setPieza(movimiento.getPosFin(), this);			
 		}
 	}
 	

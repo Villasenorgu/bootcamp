@@ -5,26 +5,35 @@ public class Tablero {
 	private Pieza[][] piezas = new Pieza[8][8];
 	
 	public Pieza getPieza(int columna, int fila) {
-		if(piezas[columna-1][fila-1] != null)
-			return piezas[columna-1][fila-1];		
-		else {
-			throw new IllegalArgumentException("No hay pieza");
+		if(esValido(columna)&&esValido(fila)) {
+			if(this.piezas[columna-1][fila-1] != null)
+				return this.piezas[columna-1][fila-1];		
+			else {
+				throw new IllegalArgumentException("No hay pieza");
+			}
+		}else {
+			throw new IllegalArgumentException("Columna o fila no validos");
 		}
+		
 	}
 	public Pieza getPieza(Posicion posicion) {
-		if(piezas[posicion.getColumna()-1][posicion.getFila()-1] != null)
-			return piezas[posicion.getColumna()-1][posicion.getFila()-1];
-		else {
-			throw new IllegalArgumentException("No hay pieza");
+		if(esValido(posicion.getColumna())&&esValido(posicion.getFila())) {
+			if(this.piezas[posicion.getColumna()-1][posicion.getFila()-1] != null)
+				return this.piezas[posicion.getColumna()-1][posicion.getFila()-1];
+			else {
+				throw new IllegalArgumentException("No hay pieza");
+			}
+		}else {
+			throw new IllegalArgumentException("Columna o fila no validos");
 		}
 	}
 	
 	public void setPieza(int columna, int fila, Pieza pieza) {
-		piezas[columna-1][fila-1] = pieza;	
+		this.piezas[columna-1][fila-1] = pieza;	
 		
 	}
 	public void setPieza(Posicion posicion, Pieza pieza) {
-		piezas[posicion.getColumna()-1][posicion.getFila()-1] = pieza;	
+		this.piezas[posicion.getColumna()-1][posicion.getFila()-1] = pieza;	
 	}
 	
 	private boolean esValido(int valido) {
@@ -35,26 +44,26 @@ public class Tablero {
 	}
 	
 	public boolean hayPieza(int columna, int fila) {
-		if(	piezas[columna-1][fila-1] != null)
+		if(	this.piezas[columna-1][fila-1] != null)
 			return true;
 		else
 			return false;
 	}
 	public boolean hayPieza(Posicion posicion) {
-		if(piezas[posicion.getColumna()-1][posicion.getFila()-1] != null)
+		if(this.piezas[posicion.getColumna()-1][posicion.getFila()-1] != null)
 			return true;
 		else
 			return false;
 	}
 	public void QuitaPieza(int columna, int fila) {
-		piezas[columna-1][fila-1] = null;
+		this.piezas[columna-1][fila-1] = null;
 	}
 	public void QuitaPieza(Posicion posicion) {
-		piezas[posicion.getColumna()-1][posicion.getFila()-1] = null;
+		this.piezas[posicion.getColumna()-1][posicion.getFila()-1] = null;
 	}
 	public void Mover(Movimiento movimiento) {
-							piezas[movimiento.getPosIni().getColumna()-1][movimiento.getPosIni().getFila()-1].Mover(movimiento, this);
-							QuitaPieza(movimiento.getPosIni());
+		this.getPieza(movimiento.getPosIni()).Mover(movimiento, this);
+		QuitaPieza(movimiento.getPosIni());
 	}
 	
 	@Override
@@ -76,11 +85,12 @@ public class Tablero {
 		Posicion posNext = new Posicion(movimiento.getPosIni().getColumna()+movimiento.deltaColumna(),
 				movimiento.getPosIni().getFila()+movimiento.deltaFila());
 		
-			for(int i = 1; !posNext.equals(movimiento.getPosFin()) ; i++) {
-				if(hayPieza(posNext.getColumna()+(movimiento.deltaColumna()*i),posNext.getFila()+(movimiento.deltaFila()*i))) {
+			for(int i = 1; !posNext.Equals(movimiento.getPosFin()) ; i++) {
+				if(hayPieza(posNext)) {
 					return true;
 				}else {
-					posNext = new Posicion(movimiento.getColumna()+(movimiento.deltaColumna()*i),movimiento.getFila()+(movimiento.deltaFila()*i));
+					posNext = new Posicion(posNext.getColumna()+(movimiento.deltaColumna()),
+							posNext.getFila()+(movimiento.deltaFila()));				
 				}
 			}return false;		
 		}

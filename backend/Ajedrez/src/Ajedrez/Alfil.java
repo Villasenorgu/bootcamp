@@ -9,9 +9,9 @@ public class Alfil extends Pieza {
 
 	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
 		if (movimiento.EsDiagonal()) {
-			if ((tablero.hayPieza(movimiento.getPosFin()) && tablero.getPieza(movimiento.getPosFin()).getElColor().toString() != tablero.getPieza(movimiento.getPosIni()).getElColor().toString())) {
+			if ((tablero.hayPieza(movimiento.getPosFin()) && !tablero.HayPiezasEntre(movimiento) && tablero.getPieza(movimiento.getPosFin()).getElColor().toString() != this.getElColor().toString())) {
 				return true;
-			}else if(!tablero.hayPieza(movimiento.getPosFin())){
+			}else if(!tablero.hayPieza(movimiento.getPosFin()) && !tablero.HayPiezasEntre(movimiento)){
 				return true;
 			}
 		}

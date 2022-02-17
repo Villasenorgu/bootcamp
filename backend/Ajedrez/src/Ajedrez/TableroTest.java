@@ -13,6 +13,7 @@ class TableroTest {
 	Tablero tablero = new Tablero();
 	
 	
+	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -67,11 +68,26 @@ class TableroTest {
 
 	@Test
 	void testMover() {
+		Juego juego = new Juego();
+		juego.getTablero();
+		juego.inicializar();
 		
-		tablero.Mover(new Movimiento("c7c6"));
-		tablero.Mover(new Movimiento("b1c3"));
-		tablero.Mover(new Movimiento("c3d5"));
-		tablero.Mover(new Movimiento("c6d5"));
+		juego.Jugada("b1c3");		
+		juego.Jugada("c7c6");
+		juego.Jugada("c3d5");
+		juego.Jugada("c6d5");
+		juego.Jugada("h2h3");
+		juego.Jugada("b7b6");
+		juego.Jugada("h3h4");
+		juego.Jugada("c8a6");
+		juego.Jugada("h1h3");
+		juego.Jugada("d7d6");
+		juego.Jugada("h3g3");
+		juego.Jugada("d8d7");
+		juego.Jugada("g3f3");
+		juego.Jugada("e8d8");
+		juego.Jugada("g2g4");
+		
 		
 	}
 
@@ -93,23 +109,5 @@ class TableroTest {
 		tablero.setPieza(new Posicion(2,2), new Torre(Color.BLANCO));
 		assertTrue(tablero.HayPiezasEntre(new Movimiento("b2b8")));
 	}
-	@Test
-	void mainTest() {
-		Juego juego = new Juego();
-		juego.inicializar();
-		juego.Jugada("b1c3");
-		juego.Jugada("c7c6");
-		juego.Jugada("c3d5");
-		juego.Jugada("c6d5");
-		juego.Jugada("h2h3");
-		juego.Jugada("b7b6");
-		juego.Jugada("h3h4");
-		juego.Jugada("c8a6");
-		juego.Jugada("h1h3");
-		juego.Jugada("d7d6");
-		juego.Jugada("h3g3");
-		juego.Jugada("d8d7");
-		juego.Jugada("g3f3");
-		juego.Jugada("e8d8");
-	}
+	
 }

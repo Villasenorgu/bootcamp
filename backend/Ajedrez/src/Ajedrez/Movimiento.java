@@ -98,9 +98,9 @@ public class Movimiento extends Posicion{
 	}
 
 	public int deltaFila() {
-		if(PosIni.getColumna() == PosFin.getColumna()){
+		if(PosIni.getFila() == PosFin.getFila()){
 			return 0;
-		}else if(PosFin.getColumna() > PosIni.getColumna()){
+		}else if(PosFin.getFila() > PosIni.getFila()){
 			return 1;
 		}else {
 			return -1;
@@ -108,9 +108,9 @@ public class Movimiento extends Posicion{
 	}
 
 	public int deltaColumna() {
-		if(PosIni.getFila() == PosFin.getFila()){
+		if(PosIni.getColumna() == PosFin.getColumna()){
 			return 0;
-		}else if(PosFin.getFila() > PosIni.getFila()){
+		}else if(PosFin.getColumna() > PosIni.getColumna()){
 			return 1;
 		}else {
 			return -1;

@@ -76,12 +76,12 @@ class MovimientoTest {
 
 	@Test
 	void testDeltaFila() {
-		assertEquals(1, mHorizontal.deltaFila());
+		assertEquals(0, mHorizontal.deltaFila());
 	}
 
 	@Test
 	void testDeltaColumna() {
-		assertEquals(1, mVertical.deltaColumna());
+		assertEquals(0, mVertical.deltaColumna());
 	}
 
 }

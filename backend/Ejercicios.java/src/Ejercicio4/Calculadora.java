@@ -13,6 +13,7 @@ public class Calculadora {
 		Calculadora app = new Calculadora();
 		
 		String cad = app.LeerArchivo();
+		System.out.println(cad);
 		String[] cad2 = app.decodificar(cad);
 		double resultado = app.parametrizar(cad2);
 		app.EscribirResultado(cad2,resultado);
@@ -20,19 +21,24 @@ public class Calculadora {
 	}
 
 	public String LeerArchivo() {
+		String cadena = new  String();
 		try {
 		      File archivo = new File("C:\\curso\\backend\\Ejercicios.java\\src\\Ejercicio4\\Archivo.txt");
 		      Scanner lector = new Scanner(archivo);
-		      while (lector.hasNextLine()) {
-		    	return lector.nextLine().toString();
+		      
+		      while (lector.hasNextLine()) {		    	  
+		    	 cadena.concat(lector.nextLine().toString());
 		      }
-		      lector.close();
+		      System.out.println(cadena);
+//		      cadena.replaceAll(" ", "");
+//		      cadena.replaceAll("\\n", "");
+		      lector.close();	
+		      
 		    } catch (FileNotFoundException e) {
 		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		      return "error";
+		      e.printStackTrace();		      
 		    }
-		return "";
+		return cadena;
 	}
 	
 	

@@ -11,9 +11,9 @@ public abstract class Pieza{
 	}
 	protected abstract boolean esValido(Movimiento movimiento, Tablero tablero);
 	public void Mover(Movimiento movimiento, Tablero tablero) {
-		if(esValido(movimiento, tablero))
-			tablero.Mover(movimiento);
-		else
+		if(esValido(movimiento, tablero)) {
+			tablero.setPieza(movimiento.getPosFin(), this);
+		}else
 			throw new IllegalArgumentException("No es un movimiento valido");
 	}
 }
