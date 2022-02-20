@@ -7,7 +7,7 @@ public class Peon extends Pieza {
 		
 	}
 	
-	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
+	protected boolean esValido(Movimiento movimiento, Tablero tablero) throws JuegoException {
 		if (this.Avanza(movimiento)) {
 			if ((!tablero.hayPieza(movimiento.getPosFin()))) {
 				return true;
@@ -33,7 +33,7 @@ public class Peon extends Pieza {
 		return true;
 	}
 	
-	private boolean PuedeComer(Movimiento movimiento, Tablero tablero) {
+	private boolean PuedeComer(Movimiento movimiento, Tablero tablero) throws JuegoException {
 		if(movimiento.EsDiagonal() && movimiento.SaltoHorizontal() == 1 && tablero.hayPieza(movimiento.getPosFin()) && (tablero.getPieza(movimiento.getPosFin()).getElColor().toString() != this.getElColor().toString())) {
 			return true;
 		}
@@ -54,7 +54,7 @@ public class Peon extends Pieza {
 	}
 	
 	@Override
-	public void Mover(Movimiento movimiento, Tablero tablero) {
+	public void Mover(Movimiento movimiento, Tablero tablero) throws JuegoException {
 		if(esValido(movimiento, tablero)&&Avanza(movimiento)) {
 			tablero.setPieza(movimiento.getPosFin(), this);			
 		}

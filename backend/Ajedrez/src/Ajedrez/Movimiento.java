@@ -14,12 +14,13 @@ public class Movimiento extends Posicion{
 	/**
 	 * Establece una posicion inicial para un movimiento
 	 * @param posIni Una posicion
+	 * @throws JuegoException 
 	 */
-	public void setPosIni(Posicion posIni) {
+	public void setPosIni(Posicion posIni) throws JuegoException {
 		if(posIni != null)
 			this.PosIni = posIni;
 		else
-			throw new IllegalArgumentException("Posicion inicial nula");
+			throw new JuegoException("Posicion inicial nula");
 	}
 
 	/**
@@ -31,28 +32,30 @@ public class Movimiento extends Posicion{
 	/**
 	 * Establece una posicion final para un movimiento
 	 * @param posFin Una posicion
+	 * @throws JuegoException 
 	 */
-	public void setPosFin(Posicion posFin) {
+	public void setPosFin(Posicion posFin) throws JuegoException {
 		if(posFin != null)
 		this.PosFin = posFin;
 		else
-			throw new IllegalArgumentException("Posicion final nula");
+			throw new JuegoException("Posicion final nula");
 	}
 
 	/**
 	 * Valida dos posiciones distintas y guarda un movimiento
 	 * @param movimiento String en formato internacional de ajedrez (A1B1)
+	 * @throws JuegoException 
 	 */
-	public Movimiento(String movimiento){
+	public Movimiento(String movimiento) throws JuegoException{
 		if(movimiento.length() == 4) {
 			this.PosIni = new Posicion(movimiento.charAt(0),movimiento.charAt(1));
 			this.PosFin = new Posicion(movimiento.charAt(2),movimiento.charAt(3));
 			if(!this.PosIni.Equals(this.PosFin)) {
 			}else {
-				throw new IllegalArgumentException("Las Posiciones no pueden ser la misma para un movimiento");
+				throw new JuegoException("Las Posiciones no pueden ser la misma para un movimiento");
 			}
 		}else {
-			throw new IllegalArgumentException("El movimiento debe ser en nomenclatura internacional A1B2");
+			throw new JuegoException("El movimiento debe ser en nomenclatura internacional A1B2");
 		}
 	}
 	

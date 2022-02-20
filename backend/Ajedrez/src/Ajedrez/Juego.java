@@ -42,21 +42,21 @@ public class Juego {
 		
 	}
 	
-	public void Jugada(String jugada) {
+	public void Jugada(String jugada) throws JuegoException {
 		if(partidaActiva) {		
 			Movimiento movimiento = new Movimiento(jugada);
 			Mover(movimiento);
 		}else {
-			throw new IllegalArgumentException("Partida no activa");
+			throw new JuegoException("Partida no activa");
 		}
 	}
 	
-	private void Mover(Movimiento movimiento) {
+	private void Mover(Movimiento movimiento) throws JuegoException {
 		if( elTablero.getPieza(movimiento.getPosIni()).getElColor().toString() == getTurno().toString()) {
 			elTablero.Mover(movimiento);
 			this.CambiaTurno();
 		}else {
-			throw new IllegalArgumentException("Color de la Pieza no válido, juega jugador: "+getTurno().toString());
+			throw new JuegoException("Color de la Pieza no válido, juega jugador: "+getTurno().toString());
 		}
 	}
 	
@@ -71,24 +71,7 @@ public class Juego {
 	}
 	
 	public static void main(String[] args) {
-//		Juego juego = new Juego();
-//		juego.getTablero();
-//		juego.inicializar();
-//		juego.partidaActiva = true;	
-//		juego.Jugada("b1c3");
-//		juego.Jugada("c7c6");
-//		juego.Jugada("c3d5");
-//		juego.Jugada("c6d5");
-//		juego.Jugada("h2h3");
-//		juego.Jugada("b7b6");
-//		juego.Jugada("h3h4");
-//		juego.Jugada("c8a6");
-//		juego.Jugada("h1h3");
-//		juego.Jugada("d7d6");
-//		juego.Jugada("h3g3");
-//		juego.Jugada("d8d7");
-//		juego.Jugada("g3f3");
-//		juego.Jugada("e8d8");
+
 		
 	}
 

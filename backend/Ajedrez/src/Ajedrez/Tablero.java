@@ -4,27 +4,27 @@ public class Tablero {
 	
 	private Pieza[][] piezas = new Pieza[8][8];
 	
-	public Pieza getPieza(int columna, int fila) {
+	public Pieza getPieza(int columna, int fila) throws JuegoException {
 		if(esValido(columna)&&esValido(fila)) {
 			if(this.piezas[columna-1][fila-1] != null)
 				return this.piezas[columna-1][fila-1];		
 			else {
-				throw new IllegalArgumentException("No hay pieza");
+				throw new JuegoException("No hay pieza");
 			}
 		}else {
-			throw new IllegalArgumentException("Columna o fila no validos");
+			throw new JuegoException("Columna o fila no validos");
 		}
 		
 	}
-	public Pieza getPieza(Posicion posicion) {
+	public Pieza getPieza(Posicion posicion) throws JuegoException {
 		if(esValido(posicion.getColumna())&&esValido(posicion.getFila())) {
 			if(this.piezas[posicion.getColumna()-1][posicion.getFila()-1] != null)
 				return this.piezas[posicion.getColumna()-1][posicion.getFila()-1];
 			else {
-				throw new IllegalArgumentException("No hay pieza");
+				throw new JuegoException("No hay pieza");
 			}
 		}else {
-			throw new IllegalArgumentException("Columna o fila no validos");
+			throw new JuegoException("Columna o fila no validos");
 		}
 	}
 	
@@ -61,7 +61,7 @@ public class Tablero {
 	public void QuitaPieza(Posicion posicion) {
 		this.piezas[posicion.getColumna()-1][posicion.getFila()-1] = null;
 	}
-	public void Mover(Movimiento movimiento) {
+	public void Mover(Movimiento movimiento) throws JuegoException {
 		this.getPieza(movimiento.getPosIni()).Mover(movimiento, this);
 		QuitaPieza(movimiento.getPosIni());
 	}
@@ -78,9 +78,9 @@ public class Tablero {
 		else
 			return Color.BLANCO;
 	}
-	public boolean HayPiezasEntre(Movimiento movimiento) {
+	public boolean HayPiezasEntre(Movimiento movimiento) throws JuegoException {
 		if((!movimiento.EsDiagonal() && !movimiento.EsVertical() && !movimiento.EsHorizontal()) && !hayPieza(movimiento.getPosIni())) {
-			throw new IllegalArgumentException("No es un movimiento valido");
+			throw new JuegoException("No es un movimiento valido");
 		}else {
 		Posicion posNext = new Posicion(movimiento.getPosIni().getColumna()+movimiento.deltaColumna(),
 				movimiento.getPosIni().getFila()+movimiento.deltaFila());

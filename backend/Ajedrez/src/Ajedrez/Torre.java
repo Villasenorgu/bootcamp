@@ -7,7 +7,7 @@ public class Torre extends Pieza {
 		
 	}
 	
-	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
+	protected boolean esValido(Movimiento movimiento, Tablero tablero) throws JuegoException {
 		if (movimiento.EsVertical() | movimiento.EsHorizontal()) {
 			if ((tablero.hayPieza(movimiento.getPosFin()) && tablero.getPieza(movimiento.getPosFin()).getElColor().toString() != this.getElColor().toString())) {
 				return true;

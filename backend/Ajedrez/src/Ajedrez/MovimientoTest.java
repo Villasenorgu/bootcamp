@@ -8,14 +8,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class MovimientoTest {
 
-	Movimiento movimiento = new Movimiento("B1C2");
-	Movimiento mDiagonal = new Movimiento("c3b2");
-	Movimiento mHorizontal = new Movimiento("b2g2");
-	Movimiento mVertical = new Movimiento("a1a8");
-	Movimiento mHorizontalN = new Movimiento("f1a1");
-	Movimiento mVerticalN = new Movimiento("a6a1");
+class MovimientoTest {
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -23,10 +17,12 @@ class MovimientoTest {
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
+	
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
+		
 	}
 
 	@AfterEach
@@ -40,47 +36,58 @@ class MovimientoTest {
 	}
 	
 	@Test
-	void testGetPosIni() {
-		assertTrue(this.movimiento.getPosIni().Equals(new Movimiento("b1c2").getPosIni()));
+	void testGetPosIni() throws JuegoException{
+		Movimiento movimiento = new Movimiento("B1C2");		
+		assertTrue(movimiento.getPosIni().Equals(new Movimiento("b1c2").getPosIni()));
 	}
 
 	@Test
-	void testEsVertical() {
+	void testEsVertical() throws JuegoException {
+
+		Movimiento mVertical = new Movimiento("a1a8");
 		 assertTrue(mVertical.EsVertical());
 	}
 
 	@Test
-	void testEsHorizontal() {
+	void testEsHorizontal() throws JuegoException {
+		
+		Movimiento mHorizontal = new Movimiento("b2g2");
 		assertEquals(true, mHorizontal.EsHorizontal());
 	}
 
 	@Test
-	void testEsDiagonal() {
+	void testEsDiagonal() throws JuegoException {
+		Movimiento mDiagonal = new Movimiento("c3b2");
 		assertEquals(true, mDiagonal.EsDiagonal());
 	}
 	
 	@Test
-	void testNoEsDiagonal() {
+	void testNoEsDiagonal() throws JuegoException {
+		Movimiento mVertical = new Movimiento("a1a8");
 		assertEquals(false, mVertical.EsDiagonal());
 	}
 
 	@Test
-	void testSaltoVertical() {
+	void testSaltoVertical() throws JuegoException {
+		Movimiento mVertical = new Movimiento("a1a8");
 		assertEquals(7, mVertical.SaltoVertical());
 	}
 
 	@Test
-	void testSaltoHorizontal() {
+	void testSaltoHorizontal() throws JuegoException {
+		Movimiento mHorizontal = new Movimiento("b2g2");
 		assertEquals(0, mHorizontal.SaltoVertical());
 	}
 
 	@Test
-	void testDeltaFila() {
+	void testDeltaFila() throws JuegoException {
+		Movimiento mHorizontal = new Movimiento("b2g2");
 		assertEquals(0, mHorizontal.deltaFila());
 	}
 
 	@Test
-	void testDeltaColumna() {
+	void testDeltaColumna() throws JuegoException {
+		Movimiento mVertical = new Movimiento("a1a8");
 		assertEquals(0, mVertical.deltaColumna());
 	}
 

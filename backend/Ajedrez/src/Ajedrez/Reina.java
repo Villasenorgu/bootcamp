@@ -6,7 +6,7 @@ public class Reina extends Pieza {
 		super(color);
 		
 	}
-	protected boolean esValido(Movimiento movimiento, Tablero tablero) {
+	protected boolean esValido(Movimiento movimiento, Tablero tablero) throws JuegoException {
 		if ((movimiento.EsHorizontal() || movimiento.EsVertical() || movimiento.EsDiagonal()) && !tablero.HayPiezasEntre(movimiento)) {
 				return true;
 			}		

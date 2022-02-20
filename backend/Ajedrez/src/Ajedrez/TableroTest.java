@@ -67,11 +67,10 @@ class TableroTest {
 	}
 
 	@Test
-	void testMover() {
+	void testMover() throws JuegoException {
 		Juego juego = new Juego();
 		juego.getTablero();
-		juego.inicializar();
-		
+		juego.inicializar();		
 		juego.Jugada("b1c3");		
 		juego.Jugada("c7c6");
 		juego.Jugada("c3d5");
@@ -99,12 +98,12 @@ class TableroTest {
 	}
 
 	@Test
-	void testNoHayPiezasEntre() {
+	void testNoHayPiezasEntre() throws JuegoException {
 		assertFalse(tablero.HayPiezasEntre(new Movimiento("b2b7")));
 	}
 	
 	@Test
-	void testHayPiezasEntre() {
+	void testHayPiezasEntre() throws JuegoException {
 		tablero.setPieza(new Posicion(2,6), new Torre(Color.BLANCO));
 		tablero.setPieza(new Posicion(2,2), new Torre(Color.BLANCO));
 		assertTrue(tablero.HayPiezasEntre(new Movimiento("b2b8")));
