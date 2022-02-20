@@ -88,18 +88,21 @@ public class Movimiento extends Posicion{
 		}
 	}
 	/**
-	 * @return Devuelve Entero con el numero de posiciones de diferencia en un movimiento Vertical y su dirección(+ o-)
+	 * @return Devuelve Entero con el numero de posiciones de diferencia en un movimiento Vertical en valor absoluto
 	 */
 	public int SaltoVertical() {
 		return Math.abs(PosFin.getFila()-PosIni.getFila());
 	}
 	/**
-	 * @return Devuelve Entero con el numero de posiciones de diferencia en un movimiento Horizontal y su dirección(+ o-)
+	 * @return Devuelve Entero con el numero de posiciones de diferencia en un movimiento Horizontal en valor absoluto
 	 */
 	public int SaltoHorizontal() {
 		return Math.abs(PosFin.getColumna()-PosIni.getColumna());
 	}
 
+	/**
+	 * @return Aplicado a un movimiento devuelve 0 si la Fila no cambia, 1 si la Fila inicial es mayor que la final y -1 si es menor
+	 */
 	public int deltaFila() {
 		if(PosIni.getFila() == PosFin.getFila()){
 			return 0;
@@ -110,6 +113,9 @@ public class Movimiento extends Posicion{
 		}
 	}
 
+	/**
+	 * @return Aplicado a un movimiento devuelve 0 si la Columna no cambia, 1 si la Columna inicial es mayor que la final y -1 si es menor
+	 */
 	public int deltaColumna() {
 		if(PosIni.getColumna() == PosFin.getColumna()){
 			return 0;

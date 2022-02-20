@@ -10,10 +10,8 @@ import org.junit.jupiter.api.Test;
 
 class PosicionTest {
 	
-	Posicion posicion = new Posicion(2,1);
-	char x;
-	char y;
-	Posicion posicionConChar = new Posicion('a','7');
+	
+	
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,22 +31,30 @@ class PosicionTest {
 	}
 
 	@Test
-	void testGetFila() {
+	void testGetFila() throws JuegoException {
+		Posicion posicion = new Posicion(2,1);
 		assertEquals(1, posicion.getFila() );
 	}
 	
 	@Test
-	void testGetFilaChar() {
+	void testGetFilaChar() throws JuegoException {
+		char x;
+		char y;
+		Posicion posicionConChar = new Posicion('a','7');
 		assertEquals(7, posicionConChar.getFila());
 	}
 
 	@Test
-	void testGetColumna() {
+	void testGetColumna() throws JuegoException {
+		Posicion posicion = new Posicion(2,1);
 		assertEquals(2, posicion.getColumna());
 	}
 	
 	@Test
-	void testGetColumnaChar() {
+	void testGetColumnaChar() throws JuegoException {
+		char x;
+		char y;
+		Posicion posicionConChar = new Posicion('a','7');
 		assertEquals(1, posicionConChar.getColumna());
 	}
 	
@@ -66,17 +72,21 @@ class PosicionTest {
 	
 	@Test
 	void testExceptionPosicionNula() throws Exception{
+		char x = ' ';
+		char y = ' ';
 		Exception exception = assertThrows(Exception.class , () -> {new Posicion(x,y);});
 		assertTrue(exception.getMessage().contains(exception.getMessage()));
 	}
 
 	@Test
-	void testEquals() {
+	void testEquals() throws JuegoException {
+		Posicion posicion = new Posicion(2,1);
 		assertEquals(true,posicion.Equals(new Posicion(2,1)));
 	}
 	
 	@Test
-	void testEqualsFalse() {
+	void testEqualsFalse() throws JuegoException {
+		Posicion posicion = new Posicion(2,1);
 		assertEquals(false,posicion.Equals(new Posicion(2,2)));
 	}
 }

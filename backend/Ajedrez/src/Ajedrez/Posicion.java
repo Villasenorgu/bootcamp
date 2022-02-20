@@ -24,17 +24,18 @@ public class Posicion {
 	 * Recibe una posicion en forma de enteros,la valida y la guarda
 	 * @param columna Entero entre 1 y 8
 	 * @param fila Entero entre 1 y 8
+	 * @throws JuegoException 
 	 */
-	public Posicion(int columna, int fila) {
+	public Posicion(int columna, int fila) throws JuegoException {
 		if(fila > 0 && fila < 9) {
 			laFila = fila;
 		} else {
-			throw new IllegalArgumentException("Valor inesperado: " + fila + " .Requiere un valor entre 0 y 8");
+			throw new JuegoException("Valor inesperado: " + fila + " .Requiere un valor entre 0 y 8");
 		}
 		if(columna > 0 && columna < 9) {
 		laColumna = columna;
 		} else {
-			throw new IllegalArgumentException("Valor inesperado: " + columna + " .Requiere un valor entre 0 y 8");
+			throw new JuegoException("Valor inesperado: " + columna + " .Requiere un valor entre 0 y 8");
 		}
 	}
 	
@@ -42,8 +43,9 @@ public class Posicion {
 	 * Recibe una posicion en formato internacional de ajedrez(Caracter(A-H), Caracter(1-8)),la valida, las transforma en enteros y la guarda
 	 * @param columna Caracter entre A y H
 	 * @param fila Caracter entre 1 y 8
+	 * @throws JuegoException 
 	 */
-	public Posicion(char columna, char fila) {
+	public Posicion(char columna, char fila) throws JuegoException {
 		if(Character.isLetter(columna) && !Character.isLetter(fila)) {
 			columna = Character.toLowerCase(columna);
 			
@@ -57,7 +59,7 @@ public class Posicion {
 			case '7': {laFila =  7; break;}
 			case '8': {laFila =  8; break;}
 			default:
-				throw new IllegalArgumentException("Valor inesperado: " + fila);
+				throw new JuegoException("Valor inesperado: " + fila);
 				
 			}
 			
@@ -71,10 +73,10 @@ public class Posicion {
 			case 'g': {laColumna =  7; break;}
 			case 'h': {laColumna =  8; break;}
 			default:
-				throw new IllegalArgumentException("Valor inesperado: " + columna);
+				throw new JuegoException("Valor inesperado: " + columna);
 			}
 		}else {
-			throw new IllegalArgumentException("Ni fila ni columna pueden ser nulos");
+			throw new JuegoException("Ni fila ni columna pueden ser nulos");
 		}
 		
 	}

@@ -33,7 +33,7 @@ class TableroTest {
 	}
 
 	@Test
-	void testHayPiezaIntInt() {
+	void testHayPiezaIntInt() throws JuegoException {
 		tablero.setPieza(new Posicion(8,8), new Torre(Color.NEGRO));
 		assertTrue(tablero.hayPieza(8,8));
 	}
@@ -44,13 +44,13 @@ class TableroTest {
 	}
 
 	@Test
-	void testHayPiezaPosicion() {
+	void testHayPiezaPosicion() throws JuegoException {
 		tablero.setPieza(new Posicion(1,1), new Torre(Color.NEGRO));
 		assertTrue(tablero.hayPieza(new Posicion(1,1)));
 	}
 	
 	@Test
-	void testNoHayPiezaPosicion() {
+	void testNoHayPiezaPosicion() throws JuegoException {
 		assertFalse(tablero.hayPieza(new Posicion(5,5)));
 	}
 
@@ -61,7 +61,7 @@ class TableroTest {
 	}
 
 	@Test
-	void testQuitaPiezaPosicion() {
+	void testQuitaPiezaPosicion() throws JuegoException {
 		tablero.QuitaPieza(new Posicion(1,1));
 		assertFalse(tablero.hayPieza(1,1));
 	}
