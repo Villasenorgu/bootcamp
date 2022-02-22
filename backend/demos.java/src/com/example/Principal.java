@@ -12,10 +12,13 @@ import java.util.List;
  */
 public class Principal {
 	public static void main(String[] args) {
-		Dias dia = Dias.DOMINGO;
-		String s = "Hola";
-		s += " mundo";
-		System.out.println(dia);
+		int x = 5;
+
+		double y = 5;
+
+		y *= x++;
+
+		System.out.println(x);
 
 	}
 
@@ -24,20 +27,13 @@ public class Principal {
 	 */
 	public static void main2(String[] args) {
 		// TODO Auto-generated method stub
-		List<String> lst = new ArrayList<String>(); // casting
+		int x = 5;
 
-		int[][] vector1 = { {}, {} }; // vector de vectores
+		double y = 5;
 
-		String miLista[] = { "Hola", "me llamo tal." };
+		y *= x++;
 
-		int i = 1000;
-
-		byte b;
-		b = (byte) i;
-
-		if (i == b) {
-
-		}
+		System.out.println(x);
 	}
 
 }
