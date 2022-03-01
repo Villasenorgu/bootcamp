@@ -12,8 +12,6 @@ import com.example.application.dtos.ActorShortDTO;
 import com.example.domains.entities.Actor;
 
 public interface ActorRepositoy extends JpaRepository<Actor, Integer> {
-	List<Actor> findByFirstName(String nombre);
-	List<Actor> findByFirstNameStartingWithAndLastNameEndingWith(String prefijo, String sufijo);
 
 	<T> List<T> findByActorIdIsNotNull(Class<T> type);
 	<T> Iterable<T> findByActorIdIsNotNull(Sort sort, Class<T> type);
