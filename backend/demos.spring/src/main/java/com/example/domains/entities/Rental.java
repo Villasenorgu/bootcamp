@@ -2,9 +2,23 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.validator.constraints.Length;
+
+import com.example.domains.core.entities.EntityBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -14,17 +28,20 @@ import java.util.List;
 @Entity
 @Table(name="rental")
 @NamedQuery(name="Rental.findAll", query="SELECT r FROM Rental r")
-public class Rental implements Serializable {
+public class Rental extends EntityBase<Rental> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="rental_id")
 	private int rentalId;
-
+	
+	@NotNull
 	@Column(name="last_update")
+	@Generated(value = GenerationTime.ALWAYS)
 	private Timestamp lastUpdate;
-
+	
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="rental_date")
 	private Date rentalDate;
@@ -34,31 +51,68 @@ public class Rental implements Serializable {
 	private Date returnDate;
 
 	//bi-directional many-to-one association to Payment
-	@OneToMany(mappedBy="rental")
+	@OneToMany(mappedBy="rental",cascade = CascadeType.ALL, orphanRemoval = true)
+	@Valid
 	private List<Payment> payments;
 
 	//bi-directional many-to-one association to Customer
 	@ManyToOne
+	@Length(max = 5)
+	@Positive
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 
 	//bi-directional many-to-one association to Inventory
 	@ManyToOne
+	@Length(max = 7)
+	@Positive
 	@JoinColumn(name="inventory_id")
 	private Inventory inventory;
 
 	//bi-directional many-to-one association to Staff
 	@ManyToOne
+	@Length(max = 3)
+	@Positive
 	@JoinColumn(name="staff_id")
 	private Staff staff;
 
 	public Rental() {
+		super();
+		payments = new ArrayList<>();
+	}
+	
+	public Rental(int rentalId) {
+		this();
+		this.rentalId = rentalId;
+	}
+
+	public Rental(int rentalId, @NotNull Date rentalDate, @Length(max = 7) @Positive Inventory inventory,
+			@Length(max = 5) @Positive Customer customer, @Length(max = 3) @Positive Staff staff) {
+		super();
+		this.rentalId = rentalId;
+		this.rentalDate = rentalDate;
+		this.inventory = inventory;
+		this.customer = customer;
+		this.staff = staff;
+	}
+	
+	public Rental(int rentalId, @NotNull Date rentalDate, Date returnDate,
+			@Valid List<Payment> payments, @Length(max = 5) @Positive Customer customer,
+			@Length(max = 7) @Positive Inventory inventory, @Length(max = 3) @Positive Staff staff) {
+		super();
+		this.rentalId = rentalId;
+		this.rentalDate = rentalDate;
+		this.returnDate = returnDate;
+		this.payments = payments;
+		this.customer = customer;
+		this.inventory = inventory;
+		this.staff = staff;
 	}
 
 	public int getRentalId() {
 		return this.rentalId;
 	}
-
+	
 	public void setRentalId(int rentalId) {
 		this.rentalId = rentalId;
 	}
@@ -120,6 +174,14 @@ public class Rental implements Serializable {
 	public Inventory getInventory() {
 		return this.inventory;
 	}
+	
+	public Film getFilm() {
+		return this.inventory.getFilm();
+	}
+	
+	public String getTitle() {
+		return this.inventory.getFilm().getTitle();
+	}
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
@@ -133,4 +195,25 @@ public class Rental implements Serializable {
 		this.staff = staff;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(rentalId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Rental))
+			return false;
+		Rental other = (Rental) obj;
+		return rentalId == other.rentalId;
+	}
+
+	@Override
+	public String toString() {
+		return "Rental [rentalId=" + rentalId + ", customer=" + customer + ", inventory=" + inventory + ", staff="
+				+ staff + "]";
+	}
+	
 }

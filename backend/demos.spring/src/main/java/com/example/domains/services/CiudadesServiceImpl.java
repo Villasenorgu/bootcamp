@@ -7,52 +7,52 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.example.domains.contracts.repositories.PaisesRepository;
-import com.example.domains.contracts.services.PaisesService;
-import com.example.domains.entities.Country;
+import com.example.domains.contracts.repositories.CiudadesRepository;
+import com.example.domains.contracts.services.CiudadesService;
+import com.example.domains.entities.City;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
 
 @Service
-public class PaisesServiceImpl implements PaisesService {
-	private PaisesRepository dao;
+public class CiudadesServiceImpl implements CiudadesService {
+	private CiudadesRepository dao;
 	
-	public PaisesServiceImpl(PaisesRepository dao) {
+	public CiudadesServiceImpl(CiudadesRepository dao) {
 		this.dao = dao;
 	}
 	
 	@Override
-	public List<Country> getAll() {
+	public List<City> getAll() {
 		return dao.findAll();
 	}
 	
 	@Override
-	public Iterable<Country> getAll(Sort sort) {
+	public Iterable<City> getAll(Sort sort) {
 		return dao.findAll(sort);
 	}
 	@Override
-	public Page<Country> getAll(Pageable pageable) {
+	public Page<City> getAll(Pageable pageable) {
 		return dao.findAll(pageable);
 	}
 	
 	@Override
 	public <T> List<T> getByProjection(Class<T> type) {
-		return dao.findByCountryIdIsNotNull(type);
+		return dao.findByCityIdIsNotNull(type);
 	}
 
 	@Override
 	public <T> Iterable<T> getByProjection(Sort sort, Class<T> type) {
-		return dao.findByCountryIdIsNotNull(sort, type);
+		return dao.findByCityIdIsNotNull(sort, type);
 	}
 
 	@Override
 	public <T> Page<T> getByProjection(Pageable pageable, Class<T> type) {
-		return dao.findByCountryIdIsNotNull(pageable, type);
+		return dao.findByCityIdIsNotNull(pageable, type);
 	}
 
 	@Override
-	public Country getOne(Integer id) throws NotFoundException {
+	public City getOne(Integer id) throws NotFoundException {
 		var item = dao.findById(id);
 		if(item.isEmpty())
 			throw new NotFoundException();
@@ -60,30 +60,30 @@ public class PaisesServiceImpl implements PaisesService {
 	}
 	
 	@Override
-	public Country add(Country item) throws DuplicateKeyException, InvalidDataException {
+	public City add(City item) throws DuplicateKeyException, InvalidDataException {
 		if(item == null)
 			throw new IllegalArgumentException();
-		if(dao.findById(item.getCountryId()).isPresent())
+		if(dao.findById(item.getCityId()).isPresent())
 			throw new DuplicateKeyException();
 		if(item.isInvalid())
 			throw new InvalidDataException(item.getErrorsMessage());
 		return dao.save(item);
 	}
 	@Override
-	public Country change(Country item) throws NotFoundException, InvalidDataException  {
+	public City change(City item) throws NotFoundException, InvalidDataException  {
 		if(item == null)
 			throw new IllegalArgumentException();
-		if(dao.findById(item.getCountryId()).isEmpty())
+		if(dao.findById(item.getCityId()).isEmpty())
 			throw new NotFoundException();
 		if(item.isInvalid())
 			throw new InvalidDataException(item.getErrorsMessage());
 		return dao.save(item);
 	}
 	@Override
-	public void delete(Country item) {
+	public void delete(City item) {
 		if(item == null)
 			throw new IllegalArgumentException();
-		deleteById(item.getCountryId());
+		deleteById(item.getCityId());
 		
 	}
 	@Override

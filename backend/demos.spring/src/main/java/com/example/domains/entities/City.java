@@ -3,14 +3,12 @@ package com.example.domains.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.validator.constraints.Length;
 
 import com.example.domains.core.entities.EntityBase;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Timestamp;
@@ -33,15 +31,12 @@ public class City extends EntityBase<City> implements Serializable {
 	@Column(name="city_id")
 	private int cityId;
 
-	@Column(name="city")
 	@NotBlank
-	@Length(min=2, max=50)
+	@Length(max=50)
 	private String city;
 
 	@Column(name="last_update")
 	@Generated(value = GenerationTime.ALWAYS)
-	@PastOrPresent
-	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to Address
@@ -52,24 +47,31 @@ public class City extends EntityBase<City> implements Serializable {
 	//bi-directional many-to-one association to Country
 	@ManyToOne
 	@JoinColumn(name="country_id")
-	@JsonIgnore
 	private Country country;
 
 	public City() {
 	}
 	
-	public City(int cityId, @NotBlank @Length(min = 2, max = 50) String city) {
+	public City(int cityId) {
 		super();
 		this.cityId = cityId;
-		this.city = city;
 	}
-	
-	public City(int cityId, @NotBlank @Length(min = 2, max = 50) String city, Country country) {
+
+	public City(int cityId, @NotBlank @Length(max = 50) String city, Country country) {
 		super();
 		this.cityId = cityId;
 		this.city = city;
 		this.country = country;
 	}
+
+	public City(int cityId, @NotBlank @Length(max = 50) String city, List<Address> addresses) {
+		super();
+		this.cityId = cityId;
+		this.city = city;
+		this.addresses = addresses;
+	}
+
+
 
 	public int getCityId() {
 		return this.cityId;
@@ -144,6 +146,5 @@ public class City extends EntityBase<City> implements Serializable {
 	public String toString() {
 		return "City [cityId=" + cityId + ", city=" + city + ", country=" + country + "]";
 	}
-	
-	
+
 }

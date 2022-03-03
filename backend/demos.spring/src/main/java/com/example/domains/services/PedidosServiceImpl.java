@@ -7,53 +7,52 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.example.domains.contracts.repositories.LanguageRepository;
-import com.example.domains.contracts.services.LanguageService;
-import com.example.domains.entities.Language;
+import com.example.domains.contracts.repositories.PedidosRepository;
+import com.example.domains.contracts.services.PedidosService;
+import com.example.domains.entities.Rental;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
 
 @Service
-public class LanguageServiceImpl implements LanguageService{
-
-private LanguageRepository dao;
+public class PedidosServiceImpl implements PedidosService {
+	private PedidosRepository dao;
 	
-	public LanguageServiceImpl(LanguageRepository dao) {
+	public PedidosServiceImpl(PedidosRepository dao) {
 		this.dao = dao;
 	}
 	
 	@Override
-	public List<Language> getAll() {
+	public List<Rental> getAll() {
 		return dao.findAll();
 	}
 	
 	@Override
-	public Iterable<Language> getAll(Sort sort) {
+	public Iterable<Rental> getAll(Sort sort) {
 		return dao.findAll(sort);
 	}
 	@Override
-	public Page<Language> getAll(Pageable pageable) {
+	public Page<Rental> getAll(Pageable pageable) {
 		return dao.findAll(pageable);
 	}
 	
 	@Override
 	public <T> List<T> getByProjection(Class<T> type) {
-		return dao.findByLanguageIdIsNotNull(type);
+		return dao.findByRentalIdIsNotNull(type);
 	}
 
 	@Override
 	public <T> Iterable<T> getByProjection(Sort sort, Class<T> type) {
-		return dao.findByLanguageIdIsNotNull(sort, type);
+		return dao.findByRentalIdIsNotNull(sort, type);
 	}
 
 	@Override
 	public <T> Page<T> getByProjection(Pageable pageable, Class<T> type) {
-		return dao.findByLanguageIdIsNotNull(pageable, type);
+		return dao.findByRentalIdIsNotNull(pageable, type);
 	}
 
 	@Override
-	public Language getOne(Integer id) throws NotFoundException {
+	public Rental getOne(Integer id) throws NotFoundException {
 		var item = dao.findById(id);
 		if(item.isEmpty())
 			throw new NotFoundException();
@@ -61,36 +60,34 @@ private LanguageRepository dao;
 	}
 	
 	@Override
-	public Language add(Language item) throws DuplicateKeyException, InvalidDataException {
+	public Rental add(Rental item) throws DuplicateKeyException, InvalidDataException {
 		if(item == null)
 			throw new IllegalArgumentException();
-		if(dao.findById(item.getLanguageId()).isPresent())
+		if(dao.findById(item.getRentalId()).isPresent())
 			throw new DuplicateKeyException();
 		if(item.isInvalid())
 			throw new InvalidDataException(item.getErrorsMessage());
 		return dao.save(item);
 	}
 	@Override
-	public Language change(Language item) throws NotFoundException, InvalidDataException  {
+	public Rental change(Rental item) throws NotFoundException, InvalidDataException  {
 		if(item == null)
 			throw new IllegalArgumentException();
-		if(dao.findById(item.getLanguageId()).isEmpty())
+		if(dao.findById(item.getRentalId()).isEmpty())
 			throw new NotFoundException();
 		if(item.isInvalid())
 			throw new InvalidDataException(item.getErrorsMessage());
 		return dao.save(item);
 	}
 	@Override
-	public void delete(Language item) {
+	public void delete(Rental item) {
 		if(item == null)
 			throw new IllegalArgumentException();
-		deleteById(item.getLanguageId());
+		deleteById(item.getRentalId());
 		
 	}
 	@Override
 	public void deleteById(Integer id) {
 		dao.deleteById(id);
 	}
-
-
 }

@@ -2,6 +2,10 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -22,6 +26,9 @@ public class Payment implements Serializable {
 	@Column(name="payment_id")
 	private int paymentId;
 
+	@NotNull
+	@DecimalMin(value = "0.0", inclusive = false)
+	@Digits(integer = 3, fraction = 2)
 	private BigDecimal amount;
 
 	@Column(name="last_update")

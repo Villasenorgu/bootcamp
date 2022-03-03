@@ -1,23 +1,18 @@
 package com.example.application.dtos;
 
-import javax.validation.constraints.NotBlank;
-
 import com.example.domains.entities.City;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Value;
 
 @Value
-public class CityShortDTO {
-	
+public class CiudadShortDTO {
 	@JsonProperty("id")
 	private int cityId;
-	@JsonProperty("city")
+	@JsonProperty("ciudad")
 	private String city;
-	
-	
-	public static CityShortDTO from(City source) {
-		return new CityShortDTO(source.getCityId(), source.getCity());
-	}
 
+	public static CiudadShortDTO from(City source) {
+		return new CiudadShortDTO(source.getCityId(), source.getCity());
+	}
 }

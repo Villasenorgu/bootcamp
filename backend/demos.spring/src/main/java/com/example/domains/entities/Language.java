@@ -3,15 +3,12 @@ package com.example.domains.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.validator.constraints.Length;
 
 import com.example.domains.core.entities.EntityBase;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -29,20 +26,16 @@ public class Language extends EntityBase<Language> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotNull
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="language_id")
 	private int languageId;
 
 	@Column(name="last_update")
 	@Generated(value = GenerationTime.ALWAYS)
-	@PastOrPresent
-	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Timestamp lastUpdate;
-	
-	@Column(name="name")
+
 	@NotBlank
-	@Length(min=2, max=20)
+	@Length(max=20)
 	private String name;
 
 	//bi-directional many-to-one association to Film
@@ -56,18 +49,14 @@ public class Language extends EntityBase<Language> implements Serializable {
 	public Language() {
 	}
 
-	public Language(@NotNull int languageId,
-			@NotBlank @Length(min = 2, max = 20) String name) {
+	public Language(int languageId) {
 		super();
 		this.languageId = languageId;
-		this.name = name;
 	}
-	
-	public Language(@NotNull int languageId, @PastOrPresent Timestamp lastUpdate,
-			@NotBlank @Length(min = 2, max = 20) String name) {
+
+	public Language(int languageId, @NotBlank @Length(max = 20) String name) {
 		super();
 		this.languageId = languageId;
-		this.lastUpdate = lastUpdate;
 		this.name = name;
 	}
 
@@ -156,7 +145,7 @@ public class Language extends EntityBase<Language> implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Language [languageId=" + languageId + ", lastUpdate=" + lastUpdate + ", name=" + name + "]";
+		return "Language [languageId=" + languageId + ", name=" + name + ", lastUpdate=" + lastUpdate + "]";
 	}
 
 }

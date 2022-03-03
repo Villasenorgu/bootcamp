@@ -8,12 +8,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.example.domains.entities.Country;
+import com.example.domains.entities.Film;
+import com.example.domains.entities.Rental;
 
 @RepositoryRestResource(exported = false)
-public interface PaisesRepository extends JpaRepository<Country, Integer> {
-	<T> List<T> findByCountryIdIsNotNull(Class<T> type);
-	<T> Iterable<T> findByCountryIdIsNotNull(Sort sort, Class<T> type);
-	<T> Page<T> findByCountryIdIsNotNull(Pageable pageable, Class<T> type);
+public interface PedidosRepository extends JpaRepository<Rental, Integer> {
+	<T> List<T> findByRentalIdIsNotNull(Class<T> type);
+	<T> Iterable<T> findByRentalIdIsNotNull(Sort sort, Class<T> type);
+	<T> Page<T> findByRentalIdIsNotNull(Pageable pageable, Class<T> type);
 
 }
