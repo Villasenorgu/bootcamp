@@ -28,10 +28,10 @@ public class PedidoEditDTO {
 	@JsonProperty("id")
 	private int rentalId;
 	private Date rentalDate;
-	private Inventory inventory;
-	private Customer customer;
+	private int inventory;
+	private int customer;
 	private Date returnDate; 
-	private Staff staff;
+	private int staff;
 	private List<Payment> payments;
 	private int film;
 
@@ -39,10 +39,10 @@ public class PedidoEditDTO {
 		return new PedidoEditDTO(
 				source.getRentalId(), 
 				source.getRentalDate(), 
-				source.getInventory(),
-				source.getCustomer(),
+				source.getInventory().getInventoryId(),
+				source.getCustomer().getCustomerId(),
 				source.getReturnDate(),
-				source.getStaff(),
+				source.getStaff().getStaffId(),
 				source.getPayments(),
 				source.getInventory().getFilm().getFilmId());
 	}
@@ -52,8 +52,8 @@ public class PedidoEditDTO {
 				source.getRentalDate(),
 				source.getReturnDate(),
 				source.getPayments(),
-				source.getCustomer(),
-				source.getInventory(),
-				source.getStaff());
+				new Customer(source.getCustomer()),
+				new Inventory(source.getInventory()),
+				new Staff(source.getStaff()));
 	}
 }
