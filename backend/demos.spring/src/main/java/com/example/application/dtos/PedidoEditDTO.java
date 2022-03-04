@@ -41,8 +41,7 @@ public class PedidoEditDTO {
 	private Date returnDate; 
 	@ApiModelProperty(value = "Id del empleado")
 	private int staff;
-	@ApiModelProperty(value = "Id de la pelicula")
-	private int film;
+
 	private List<PaymentEditDTO> payments;
 
 	public static PedidoEditDTO from(Rental source) {
@@ -53,7 +52,6 @@ public class PedidoEditDTO {
 				source.getCustomer().getCustomerId(),
 				source.getReturnDate() == null ? null : source.getReturnDate(),
 				source.getStaff().getStaffId(),
-				source.getInventory().getFilm().getFilmId(),
 				source.getPayments().stream().map(item -> PaymentEditDTO.from(item)).toList()
 				);
 	}
