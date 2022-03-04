@@ -21,8 +21,10 @@ import com.example.domains.entities.Rental;
 import com.example.domains.entities.Staff;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Value;
 
+@AllArgsConstructor
 @Value
 public class PedidoEditDTO {
 	@JsonProperty("id")
@@ -32,7 +34,6 @@ public class PedidoEditDTO {
 	private int customer;
 	private Date returnDate; 
 	private int staff;
-	private List<Payment> payments;
 	private int film;
 
 	public static PedidoEditDTO from(Rental source) {
@@ -43,7 +44,6 @@ public class PedidoEditDTO {
 				source.getCustomer().getCustomerId(),
 				source.getReturnDate(),
 				source.getStaff().getStaffId(),
-				source.getPayments(),
 				source.getInventory().getFilm().getFilmId());
 	}
 	public static Rental from(PedidoEditDTO source) {
@@ -51,7 +51,6 @@ public class PedidoEditDTO {
 				source.getRentalId(),
 				source.getRentalDate(),
 				source.getReturnDate(),
-				source.getPayments(),
 				new Customer(source.getCustomer()),
 				new Inventory(source.getInventory()),
 				new Staff(source.getStaff()));

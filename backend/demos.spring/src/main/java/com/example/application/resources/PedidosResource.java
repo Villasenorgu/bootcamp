@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,9 @@ import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -45,13 +49,13 @@ public class PedidosResource {
 		return srv.getAll().stream().map(rental -> PedidoShortDTO.from(rental)).toList();
 	}
 	
-//	@Transactional
-//	@GetMapping(params = "page")
-//	public Page<PedidoShortDTO> getAll(Pageable page) {
-//		var result = srv.getAll(page);
-//		result.
-//		return result;
-//	}
+	@GetMapping(params = "page")
+	@ApiOperation(value = "Listado paginable de las películas")
+	public Page<PeliculaShortDTO> getAll(@ApiParam(required = true) Pageable page) {
+		var content = srv.getAll(page);
+		return new PageImpl(content.getContent().stream().map(item -> PedidoShortDTO.from(item)).toList(), 
+				page, content.getTotalElements());
+	}
 
 	@GetMapping(path = "/{id}")
 	public PedidoDetailsDTO getOneDetails(@PathVariable int id, @RequestParam(required = false, defaultValue = "details") String mode)

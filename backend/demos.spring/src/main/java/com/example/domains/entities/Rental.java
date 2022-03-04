@@ -36,7 +36,6 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 	@Column(name="rental_id")
 	private int rentalId;
 	
-	@NotNull
 	@Column(name="last_update")
 	@Generated(value = GenerationTime.ALWAYS)
 	private Timestamp lastUpdate;
@@ -46,7 +45,6 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 	@Column(name="rental_date")
 	private Date rentalDate;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="return_date")
 	private Date returnDate;
 
@@ -57,22 +55,16 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 
 	//bi-directional many-to-one association to Customer
 	@ManyToOne
-	@Length(max = 5)
-	@Positive
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 
 	//bi-directional many-to-one association to Inventory
 	@ManyToOne
-	@Length(max = 7)
-	@Positive
 	@JoinColumn(name="inventory_id")
 	private Inventory inventory;
 
 	//bi-directional many-to-one association to Staff
 	@ManyToOne
-	@Length(max = 3)
-	@Positive
 	@JoinColumn(name="staff_id")
 	private Staff staff;
 
@@ -86,24 +78,13 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 		this.rentalId = rentalId;
 	}
 
-	public Rental(int rentalId, @NotNull Date rentalDate, @Length(max = 7) @Positive Inventory inventory,
-			@Length(max = 5) @Positive Customer customer, @Length(max = 3) @Positive Staff staff) {
-		super();
-		this.rentalId = rentalId;
-		this.rentalDate = rentalDate;
-		this.inventory = inventory;
-		this.customer = customer;
-		this.staff = staff;
-	}
 	
-	public Rental(int rentalId, @NotNull Date rentalDate, Date returnDate,
-			@Valid List<Payment> payments, @Length(max = 5) @Positive Customer customer,
+	public Rental(int rentalId, @NotNull Date rentalDate, Date returnDate, @Length(max = 5) @Positive Customer customer,
 			@Length(max = 7) @Positive Inventory inventory, @Length(max = 3) @Positive Staff staff) {
 		super();
 		this.rentalId = rentalId;
 		this.rentalDate = rentalDate;
 		this.returnDate = returnDate;
-		this.payments = payments;
 		this.customer = customer;
 		this.inventory = inventory;
 		this.staff = staff;

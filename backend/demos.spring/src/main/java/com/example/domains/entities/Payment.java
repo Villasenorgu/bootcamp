@@ -6,6 +6,8 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
+import com.example.domains.core.entities.EntityBase;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -18,7 +20,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name="payment")
 @NamedQuery(name="Payment.findAll", query="SELECT p FROM Payment p")
-public class Payment implements Serializable {
+public class Payment extends EntityBase<Payment> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -54,6 +56,11 @@ public class Payment implements Serializable {
 	private Staff staff;
 
 	public Payment() {
+	}
+	
+	public Payment(int paymentId) {
+		super();
+		this.paymentId = paymentId;
 	}
 
 	public int getPaymentId() {
