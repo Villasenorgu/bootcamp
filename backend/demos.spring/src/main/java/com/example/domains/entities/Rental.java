@@ -50,7 +50,6 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 
 	//bi-directional many-to-one association to Payment
 	@OneToMany(mappedBy="rental",cascade = CascadeType.ALL, orphanRemoval = true)
-	@Valid
 	private List<Payment> payments;
 
 	//bi-directional many-to-one association to Customer
@@ -70,18 +69,18 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 
 	public Rental() {
 		super();
-		payments = new ArrayList<>();
+		payments = new ArrayList<Payment>();
 	}
 	
 	public Rental(int rentalId) {
-		this();
+		super();
 		this.rentalId = rentalId;
 	}
 
 	
 	public Rental(int rentalId, @NotNull Date rentalDate, Date returnDate, @Length(max = 5) @Positive Customer customer,
 			@Length(max = 7) @Positive Inventory inventory, @Length(max = 3) @Positive Staff staff) {
-		super();
+		this();
 		this.rentalId = rentalId;
 		this.rentalDate = rentalDate;
 		this.returnDate = returnDate;

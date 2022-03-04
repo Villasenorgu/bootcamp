@@ -65,15 +65,11 @@ public class Staff implements Serializable {
 
 	public Staff() {
 	}
-	
-	
-	
+
 	public Staff(int staffId) {
 		super();
 		this.staffId = staffId;
 	}
-
-
 
 	public int getStaffId() {
 		return this.staffId;
