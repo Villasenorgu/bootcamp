@@ -1,0 +1,244 @@
+:root {
+    --color-light-base: #d8ac80;
+    --color-light-content: #2d2d2d;
+    --color-light-interaction: #c45b31;
+    --color-dark-base: #2d2d2d;
+    --color-dark-content: #d8ac80;
+    --color-dark-interaction: #c45b31;
+    --tamaño-base: 1em;
+}
+
+body {
+    background-color: var(--color-light-base);
+    margin: 0px;
+    width: 100%;
+    font-family: "Oswald";
+}
+
+logo {
+    display: grid;
+    justify-items: center;
+    align-items: end;
+}
+
+.buscador {
+    padding: 10px;
+    max-height: 30%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: auto;
+    background-color: var(--color-light-content);
+    color: var(--color-light-base);
+    border-radius: 15px;
+    border-style: none;
+}
+.buscador::placeholder{
+    color: var(--color-light-base);
+}
+
+foto-perfil {
+    display: grid;
+    justify-items: center;
+}
+
+logo, foto-perfil{
+    margin: 10px;
+    margin-bottom: 0px;
+}
+
+logo img, foto-perfil img{
+    width: 100%;
+    max-height: 70px;
+    max-width: 70px;
+}
+
+foto-perfil img{
+    border-radius: 50%;
+    border: 1px solid var(--color-light-interaction);
+    padding: 2px;
+}
+
+imagen-producto img{
+    width: 100%;
+    margin: 10px;
+
+}
+
+grid-header {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+    
+}
+
+header {
+    margin: auto;
+    display: contents;
+}
+
+grid-content {
+    display: grid;
+    grid-template-columns: 33% 43% 23%;
+    border-bottom: 1px solid var(--color-light-content);
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+grid-content:last-child{
+    margin-bottom: 0px;
+}
+
+grid-content>*>h2, grid-content>*>p {
+    margin: 0px;
+}
+
+content{
+    margin: auto;
+    padding: 16px;
+    margin-bottom: 30px;
+}
+
+imagen-producto {
+    display: grid;
+    justify-items: center;
+}
+
+imagen-producto img{
+    border-radius: 15%;
+}
+
+quitar-producto {
+    margin-left: 70%;
+}
+
+quitar-producto button {
+    background-color: transparent;
+    border: none;
+    font-weight: 900;
+    font-size: 1.5em;
+    color: var(--color-light-content);
+}
+
+informacion-producto{
+    text-align: center;
+    color: var(--color-light-content);
+    display: grid;
+    justify-items: center;
+}
+
+precio{
+    color: var(--color-light-base);
+    background-color: var(--color-light-content);
+    padding: 10px;
+    border-radius: 15px;
+    margin: 10px;
+    white-space: nowrap;
+}
+
+resume{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    margin: auto;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    justify-items: center;
+}
+
+resume>*{
+    padding: 10px;
+    border-radius: 5px;
+}
+
+total-cost{
+    background-color: var(--color-light-content);
+    color: var(--color-light-base);
+}
+
+.continuar{
+    background-color: var(--color-light-interaction);
+    color: var(--color-light-content);
+    text-decoration-line: none;
+}
+
+grid-footer {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    border: 1px solid var(--color-light-content);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: var(--color-light-base);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.icon {
+    margin: 0 auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: var(--color-light-content);
+    display: inline-flex;
+    align-items: center;
+}
+
+.badge {
+    position: relative;
+    border-radius: 50%;
+    background: var(--color-light-interaction);
+    color: var(--color-light-content);
+    font-size: 1em;
+    width: 20px;
+    padding-left: 8px;
+}
+
+@media (max-width: 575px){
+    .icon p{
+        display: none;
+    }
+
+}
+
+@media (min-width: 576px) {  
+    grid-content {
+        display: grid;
+        grid-template-columns: 30% 60% 10%;
+    }
+    content{
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    .icon{
+        margin-bottom: auto;
+        margin-top: auto;
+        }
+}
+ 
+@media (min-width: 768px) {
+    grid-content {
+        display: grid;
+        grid-template-columns: 35% 55% 10%;
+    }  
+    content{
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+    grid-content:last-child{
+        margin-bottom: 15px;
+    }
+    
+}
+ 
+@media (min-width: 1200px) {
+    grid-content {
+        display: grid;
+        grid-template-columns: 40% 50% 10%;
+    }  
+    content{
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+    }
+}
+
