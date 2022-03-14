@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Prototipo Pedidos Cliente</title>
+</head>
+<body>
+    <header>
+        <grid-header>
+            <logo class="logo"><img  src="images/logo.png" alt="logo-pizza-iolo"></logo>
+            <input class="buscador" type="search" placeholder="Hoy me apetece...">
+            <foto-perfil class="logo"><img src="images/fotoperfil.png" alt="logo-usuario"></foto-perfil>
+        </grid-header>
+    </header>
+    <formulario-content>
+        <formulario>
+            <h1>Registro de Usuario</h1>
+            <form method="post">
+                <label for="fname">Nombre:</label><br>
+                <input class="input-form" type="text" id="fname" name="fname" placeholder="El amante de las pizzas" required minlength="2"><br>
+                <label for="mail">Email:</label><br>
+                <input class="input-form" type="email" id="mail" name="mail" placeholder="example@mail.com" required minlength="2"><br>
+                <label for="telefono">Teléfono:</label><br>
+                <input class="input-form" type="tel" id="telefono" name="telefono" placeholder="+34666666666" required minlength="6"><br>
+                <label for="pass">Contraseña:</label><br>
+                <input class="input-form" type="password" id="pass" name="pass" placeholder="******" required minlength="4"><br>
+                <label for="foto">Foto:</label><br>
+                <input type="file" id="foto" name="foto"><br>
+                <input class="boton-formulario" type="reset" value="Borrar">
+                <input class="boton-formulario" name="botón" type="submit" value="Enviar">                
+            </form>
+        </formulario>
+    </formulario-content>
+    <nav-footer>
+        <grid-footer>
+            <i class="icon bi-house-door"><p> Inicio</p></i>
+            <i class="icon bi-box-seam"><p> Pedidos</p></i>
+            <i class="icon bi-cart"><span class="badge">6</span><p> Carrito</p></i>
+            <i class="icon bi-search"><p> Buscar</p></i>
+            <i class="icon bi-person"><p> Mi Perfil</p></i>
+        </grid-footer>
+    </nav-footer>
+</body>
+</html>

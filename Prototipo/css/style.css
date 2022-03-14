@@ -194,6 +194,39 @@ grid-footer {
     padding-left: 8px;
 }
 
+/*Formulario*/
+formulario{
+    text-align: center;
+}
+
+.input-form{
+    background-color: var(--color-light-base);
+    color: var(--color-light-content);
+    border-radius: 15px;
+    font-family: "Oswald";
+    padding: 5px;
+    border-color: var(--color-light-content);
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.boton-formulario{
+    background-color: var(--color-light-interaction);
+    color: var(--color-light-content);
+    border: 0px solid var(--color-light-content);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px;
+    font-weight: 700;
+    font-size: 0.9em;
+}
+
+form{
+    font-size: 1.5em;
+}
+
+/*Fin Formulario*/
+
 @media (max-width: 575px){
     .icon p{
         display: none;
