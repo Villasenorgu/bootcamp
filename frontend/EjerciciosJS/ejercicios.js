@@ -92,3 +92,129 @@ function Ejercicio6(s) {
     return "Felicidades, es un palíndromo";
 
 }
+
+function FuncionConstructora() {
+
+      this.inicializar = function() {
+        this.numeroBuscado = Ejercicio1(100, 0);
+        this.intentos = 0;
+        this.encontrado = false;
+        this.resultado = "Pendiente de empezar";
+      }
+
+     
+      this.jugada = function(numeroIntroducido){
+        if(this.getFinalizado()) {
+          throw new Error("El juego a finalizado");
+        }
+            this.intentos += 1;
+            if (this.numeroBuscado == numeroIntroducido) {
+                this.encontrado = true;
+                this.resultado = "Bieeen!!! Acertaste.";
+            } else if (this.intentos >= 10) {
+              this.resultado = "Upsss! Se acabaron los intentos, el número era el " + this.numeroBuscado;
+            } else if (this.numeroBuscado > numeroIntroducido) {
+              this.resultado = "Mi número es mayor.";
+            } else {
+              this.resultado = "Mi número es menor.";
+            }
+      }
+
+      this.getResultado = function() {
+        return this.resultado;
+      }
+
+     this.getFinalizado = function() {
+        return this.intentos >= 10 || this.encontrado;
+      }
+
+      this.getJugada = function() {
+        return this.intentos;
+      }
+
+}
+
+// class AdivinaNumero {
+
+//    inicializar() {
+// 		this.num = Ejercicio1(10, 0);
+// 		console.log("Numero Secreto: " + num);
+// 		return num;
+// 	}
+
+//     jugada() {
+	
+//       jugar(nRandom) {
+//       this.respuesta = "";
+//       for (this.intentos = 9; this.intentos >= 0; this.intentos--) {
+//         if (this.respuesta === "") {
+//           this.respuesta = respuestas.primeraRespuesta();
+//         }
+//         this.numeroIntroducido = Integer.parseInt(this.respuesta);
+  
+//         if (this.numeroIntroducido == nRandom) {
+//           this.respuestas.acertado();
+//           break;
+//         } else {
+//           if ((this.numeroIntroducido != nRandom) && this.intentos == 0) {
+//             this.respuestas.noConseguido();
+//           } else if (this.numeroIntroducido > nRandom) {
+//             if (this.intentos == 1) {
+//               this.respuesta = this.respuestas.masPequeno(intentos);
+//             } else {
+//               this.respuesta = this.respuestas.masPequeno(intentos);
+//             }
+//           } else {
+//             if (intentos == 1) {
+//               this.respuesta = this.respuestas.masGrande(intentos);
+//             } else {
+//               this.respuesta = this.respuestas.masGrande(intentos);
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   respuestas() {
+	
+//     function primeraRespuesta() {
+//        this.respuesta = window.prompt("Intenta adivinarlo, introduce un número:");
+//        return this.respuesta;
+//     }
+//     function acertado() {
+//        return "Has acertado!!";
+//     }
+    
+//     function noConseguido() {
+//       return "No has conseguido acertar el número";
+//     }
+    
+//     function masPequeno(intentos) {
+//       if(parseInteger(intentos) == 1) {
+//         this.respuesta = window.prompt("El número que buscas es mas pequeño.Te queda " + intentos + " intento");
+//       return this.respuesta;
+//       }else {
+//         this.respuesta = window.prompt("El número que buscas es mas pequeño.Te quedan " + intentos + " intentos");
+//         this.respuesta;
+//       }
+//     }
+    
+//     function masGrande(intentos) {
+//       if(parseInteger(intentos) == 1) {
+//         this.respuesta = window.prompt("El número que buscas es mas grande.Te queda " + intentos + " intento");	
+//         return respuesta;
+//       }else {
+//         this.respuesta = window.prompt("El número que buscas es mas grande.Te quedan " + intentos + " intentos");
+//         return respuesta;
+//       }
+//     }
+//   }
+  
+//       constructor(){
+//         let nSecreto = inicializar();
+//         jugar(nSecreto);
+//       }
+
+  
+// }
