@@ -1,0 +1,28 @@
+body{
+    max-width: 500px;
+    margin: auto;
+}
+
+calculadora{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+pantalla{
+    text-align: right;
+}
+
+grid-botones{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+button{
+    text-align: center;
+    height: 60px;
+}
+
+.igual{
+    background-color: deepskyblue;
+}
