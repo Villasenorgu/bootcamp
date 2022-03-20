@@ -4,9 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ejemplos curso</title>
+    <title>Ejemplo AJAX</title>
   </head>
   <body>
-    <h1>Hola hijos de fruta</h1>
+    <main>
+      <h1>Peliculas</h1>
+      <section id="listado" hidden></section>
+      <section id="paginación"></section>
+      <img id="ajaxwait" src="https://c.tenor.com/gJLmlIn6EvEAAAAC/loading-gif.gif" alt="cargando" hidden>
+    </main>
+      <script>
+        function cargaPagina(page=0) {
+          let xmlhttp = new XMLHttpRquest();
+          xmlhttp.readyState = function(){
+            if(xmlhttp.readyState == 4)
+              if(xmlhttp.status == 200) {
+                let resp = JSON.parse(xmlhttp.responseText);
+                let listado = `<ul>`
+                for(let peli of resp.content )
+                  listado += `<li>${peli.titulo}</li>`
+                  listado += `</ul>`
+                  document.querySelector('#listado').innerHTML = listado;
+              }else{
+                document.querySelector('#listado').textContent = xmlhttp.status;
+              }
+          }
+        }
+      </script>
+    
   </body>
 </html>

@@ -1,41 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Calculadora</title>
-</head>
-<body>
-    <calculadora>
-        <pantalla>
-            <h1>0</h1>
-        </pantalla>
-        <grid-botones>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>/</button>
-        </grid-botones>
-        <grid-botones>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>X</button>
-        </grid-botones>
-        <grid-botones>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>-</button>
-        </grid-botones>
-        <grid-botones>
-            <button>0</button>
-            <button>,</button>
-            <button class="igual">=</button>
-            <button>+</button>
-        </grid-botones>
-    </calculadora>
-</body>
+  </head>
+  <body>
+    <div class="calculadora">
+      <div class="salida">
+        <div data-operando-anterior class="operando-anterior pantalla"></div>
+        <div data-operando-actual class="operando-actual pantalla">0</div>
+      </div>
+      <div class="grid-botones">
+        <button data-resetear class="grid-2">AC</button>
+        <button class="hidden"></button>
+        <button data-borrar>DEL</button>
+        <button data-operacion>÷</button>
+        <button data-numero>7</button>
+        <button data-numero>8</button>
+        <button data-numero>9</button>
+        <button data-operacion>*</button>
+        <button data-numero>4</button>
+        <button data-numero>5</button>
+        <button data-numero>6</button>
+        <button data-operacion>+</button>
+        <button data-numero>1</button>
+        <button data-numero>2</button>
+        <button data-numero>3</button>
+        <button data-operacion>-</button>
+        <button data-numero>,</button>
+        <button data-numero>0</button>
+        <button data-igual class="grid-2 igual">=</button>
+      </div>
+    </div>
+  </body>
+  <script src="calculadora.js"></script>
+  <script>
+    (function () {
+      const botonNumero = document.querySelectorAll('[data-numero]')
+      const botonOperacion = document.querySelectorAll('[data-operacion]')
+      const botonIgual = document.querySelector('[data-igual]')
+      const botonBorrar = document.querySelector('[data-borrar]')
+      const botonLimpiar = document.querySelector('[data-resetear]')
+      const operandoAnteriorPantalla = document.querySelector('[data-operando-anterior]')
+      const operandoActualPantalla = document.querySelector('[data-operando-actual]')
+      
+
+      const calculadora = new Calculadora(operandoAnteriorPantalla, operandoActualPantalla)
+
+      botonNumero.forEach(button => {
+        button.addEventListener('click', () => {
+          calculadora.anadirNumero(button.innerText)
+        if(operandoActualPantalla.innerText == "0" || operandoActualPantalla.innerText == "+"
+        || operandoActualPantalla.innerText == "-" || operandoActualPantalla.innerText == "*"
+        || operandoActualPantalla.innerText == "/" ){
+          operandoActualPantalla.innerText = button.innerText;
+        }else{
+          operandoActualPantalla.innerText += button.innerText;
+        }       
+          operandoAnteriorPantalla.innerText = calculadora.actualizarPantalla(operandoActualPantalla)
+        })
+      })
+
+      botonOperacion.forEach(button => {
+        button.addEventListener('click', () => {
+          calculadora.elijeOperacion(button.innerText)
+          operandoActualPantalla.innerText = button.innerText;
+          operandoAnteriorPantalla.innerText = calculadora.actualizarPantalla(operandoActualPantalla).replace(".",",")
+        })
+      })
+
+      botonIgual.addEventListener('click', button => {
+        calculadora.calcula()
+        operandoAnteriorPantalla.innerText = calculadora.actualizarPantalla(operandoActualPantalla).replace(".",",")
+        operandoActualPantalla.innerText = calculadora.operandoActual.toString().replace(".",",");
+      })
+
+      botonLimpiar.addEventListener('click', button => {
+        calculadora.resetear()
+        operandoActualPantalla.innerText = "0";
+        operandoAnteriorPantalla.innerText = calculadora.operandoAnterior;
+      })
+
+      botonBorrar.addEventListener('click', button => {
+        calculadora.borrar()
+        operandoAnteriorPantalla.innerText = calculadora.actualizarPantalla(operandoActualPantalla)
+        operandoActualPantalla.innerText = calculadora.operandoActual;
+      })
+
+    })();
+  </script>
 </html>

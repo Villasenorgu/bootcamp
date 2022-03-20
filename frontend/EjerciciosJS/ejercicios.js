@@ -35,6 +35,7 @@ function Ejercicio3(vs, a) {
     b[i] = vs;
   }
   console.log(b);
+  return b;
 }
 
 function Ejercicio4(n) {
@@ -63,19 +64,19 @@ function Ejercicio4(n) {
 
 function Ejercicio5(nif) {
   if (nif.length != 9) {
-    return "Esto no es un nif, no tiene el número de caracteres adecuado.";
+    return "Esto no es un nif, no tiene el número de caracteres adecuado.", false;
   }
   for (let i = 0; i < nif.length - 1; i++) {
     if (isNaN(nif[i])) {
       return (
         "Esto no es un nif, el carácter " +
         nif[i] +
-        " no es un número. Los primeros 8 caracteres deben ser números."
+        " no es un número. Los primeros 8 caracteres deben ser números.", false
       );
     }
   }
   if (typeof nif[8] == "number") {
-    return "El último carácter debe ser una letra.";
+    return "El último carácter debe ser una letra.", false;
   }
   nif = nif.toUpperCase();
   if (
@@ -83,10 +84,10 @@ function Ejercicio5(nif) {
       parseInt(nif.substring(0, nif.length - 1)) % 23
     ) != nif.charAt(nif.length - 1)
   ) {
-    return "El último carácter no es el que le corresponde a este NIF";
+    return "El último carácter no es el que le corresponde a este NIF", false;
   }
 
-  return "Felicidades, tu NIF es válido";
+  return "Felicidades, tu NIF es válido", true;
 }
 
 function Ejercicio6(s) {
@@ -94,9 +95,9 @@ function Ejercicio6(s) {
   s = s.trim();
   s = s.replace(/ /g, "").match(/[a-z]/gi).reverse();
   if (s.join("") !== s.reverse().join("")) {
-    return "No es un palíndromo";
+    return "No es un palíndromo", false;
   }
-  return "Felicidades, es un palíndromo";
+  return "Felicidades, es un palíndromo", true;
 }
 
 function FuncionConstructora() {
