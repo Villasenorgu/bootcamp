@@ -1,24 +1,5 @@
 describe('Pruebas de la calculadora', () => {
-    // describe('Ejericio 1', () => {
-    //     describe('OK', () => {
-    //         it('Número Aleatorio', () =>{
-    //             /*Con .and.returnValue(0.5) defino que resultado va a generar el Math.random*/
-    //             let spy = spyOn(Math, "random").and.returnValue(0.5);
-    //             let num = Ejercicio1(100,0);
-    //             expect(spy).toHaveBeenCalled();
-    //             expect(num).toBeGreaterThanOrEqual(0);
-    //             expect(num).toBeLessThanOrEqual(100);
-    //             expect(num).toBe(50);
-    //         });
-    //     });
-    //     /*PARA COMPROBAR ERRORES SI HAY IMPLEMENTACIÓN DE ELLOS*/ 
-    //     // describe('KO', () => {
-    //     //     it('Falta parámetro', () => {
-    //     //         expect(() => Ejercicio1(100)).toThrow();
-    //     //     })
-    //     // });
-    // });
-
+    
     describe('Calcula', () => {
             it('Suma', () =>{
                 let calculadora = new Calculadora();
