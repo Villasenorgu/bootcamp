@@ -12,9 +12,6 @@ export class CalculadoraComponent implements OnInit {
   operandoActualPantalla: string = '0';
 
   constructor() {
-    // this.operandoAnterior = operandoAnterior
-    // this.operandoActual = operandoActual
-    // this.resetear()
   }
 
   resetear() {
@@ -36,7 +33,6 @@ export class CalculadoraComponent implements OnInit {
   borrar() {
     this.operandoActual = this.operandoActualPantalla.toString().slice(0, -1);
     this.operandoActualPantalla = this.operandoActual;
-    console.log(this.operandoActualPantalla)
     if (this.operandoActualPantalla === '' || this.operandoActualPantalla === '+' || this.operandoActualPantalla === '-' || this.operandoActualPantalla ===  '*' ||this.operandoActualPantalla ===  '÷') {
       this.operandoActual = '0';
       this.operandoActualPantalla = '0';
