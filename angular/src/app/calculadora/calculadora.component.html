@@ -1,0 +1,87 @@
+  <body>
+    <div class="calculadora">
+      <div class="salida">
+        <div data-operando-anterior class="operando-anterior pantalla">{{operandoAnterior}}{{operacion}}</div>
+        <div data-operando-actual class="operando-actual pantalla">{{operandoActualPantalla}}</div>
+      </div>
+      <div class="grid-botones">
+        <button data-resetear class="grid-2" (click)="resetear()">AC</button>
+        <button class="hidden"></button>
+        <button data-borrar (click)="borrar()">DEL</button>
+        <button data-operacion (click)="elijeOperacion('÷')">÷</button>
+        <button data-numero (click)="anadirNumero(7)">7</button>
+        <button data-numero (click)="anadirNumero(8)">8</button>
+        <button data-numero (click)="anadirNumero(9)">9</button>
+        <button data-operacion (click)="elijeOperacion('*')">*</button>
+        <button data-numero (click)="anadirNumero(4)">4</button>
+        <button data-numero (click)="anadirNumero(5)">5</button>
+        <button data-numero (click)="anadirNumero(6)">6</button>
+        <button data-operacion (click)="elijeOperacion('+')">+</button>
+        <button data-numero (click)="anadirNumero(1)">1</button>
+        <button data-numero (click)="anadirNumero(2)">2</button>
+        <button data-numero (click)="anadirNumero(3)">3</button>
+        <button data-operacion (click)="elijeOperacion('-')">-</button>
+        <button data-numero (click)="anadirComa()">,</button>
+        <button data-numero (click)="anadirNumero(0)">0</button>
+        <button data-negar (click)="negar()">+/-</button>
+        <button data-igual class="igual" (click)="elijeOperacion('=')">=</button>
+
+      </div>
+    </div>
+  </body>
+  <!-- <script>
+    (function () {
+      const botonNumero = document.querySelectorAll('[data-numero]')
+      const botonOperacion = document.querySelectorAll('[data-operacion]')
+      const botonIgual = document.querySelector('[data-igual]')
+      const botonBorrar = document.querySelector('[data-borrar]')
+      const botonLimpiar = document.querySelector('[data-resetear]')
+      const operandoAnteriorPantalla = document.querySelector('[data-operando-anterior]')
+      const operandoActualPantalla = document.querySelector('[data-operando-actual]')
+
+
+      const calculadora = new Calculadora(operandoAnteriorPantalla, operandoActualPantalla)
+
+      botonNumero.forEach(button => {
+        button.addEventListener('click', () => {
+          calculadora.anadirNumero(button.innerText)
+        if(operandoActualPantalla.innerText == "0" || operandoActualPantalla.innerText == "+"
+        || operandoActualPantalla.innerText == "-" || operandoActualPantalla.innerText == "*"
+        || operandoActualPantalla.innerText == "/" ){
+          operandoActualPantalla.innerText = button.innerText;
+        }else{
+          operandoActualPantalla.innerText += button.innerText;
+        }
+          operandoAnteriorPantalla.innerText = calculadora.actualizarPantalla(operandoActualPantalla)
+        })
+      })
+
+      botonOperacion.forEach(button => {
+        button.addEventListener('click', () => {
+          calculadora.elijeOperacion(button.innerText)
+          operandoActualPantalla.innerText = button.innerText;
+          operandoAnteriorPantalla.innerText = calculadora.actualizarPantalla(operandoActualPantalla).replace(".",",")
+        })
+      })
+
+      botonIgual.addEventListener('click', button => {
+        calculadora.calcula()
+        operandoAnteriorPantalla.innerText = calculadora.actualizarPantalla(operandoActualPantalla).replace(".",",")
+        operandoActualPantalla.innerText = calculadora.operandoActual.toString().replace(".",",");
+      })
+
+      botonLimpiar.addEventListener('click', button => {
+        calculadora.resetear()
+        operandoActualPantalla.innerText = "0";
+        operandoAnteriorPantalla.innerText = calculadora.operandoAnterior;
+      })
+
+      botonBorrar.addEventListener('click', button => {
+        calculadora.borrar()
+        operandoAnteriorPantalla.innerText = calculadora.actualizarPantalla(operandoActualPantalla)
+        operandoActualPantalla.innerText = calculadora.operandoActual;
+      })
+
+    })();
+  </script> -->
+
