@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalculadoraComponent } from '../calculadora/calculadora.component';
 import { DemosComponent } from '../demos/demos.component';
+import { FormularioComponent } from '../formulario/formulario.component';
 import { HomeComponent } from '../main/home/home.component';
 
 @Component({
@@ -10,9 +11,10 @@ import { HomeComponent } from '../main/home/home.component';
 })
 export class DinamicoComponent implements OnInit {
   menu = [
-    {texto: 'calculadora', icono: 'fa-solid fa-calculator', componente:CalculadoraComponent},
-    {texto: 'inicio', icono: 'fa-solid fa-house', componente:HomeComponent},
-    {texto: 'demos', icono: 'fa-solid fa-chalkboard-user', componente:DemosComponent},
+    {texto: 'Formulario', icono: 'fa-solid fa-form', componente:FormularioComponent},
+    {texto: 'Calculadora', icono: 'fa-solid fa-calculator', componente:CalculadoraComponent},
+    {texto: 'Inicio', icono: 'fa-solid fa-house', componente:HomeComponent},
+    {texto: 'Demos', icono: 'fa-solid fa-chalkboard-user', componente:DemosComponent},
   ]
   actual = this.menu[0].componente
   constructor() { }

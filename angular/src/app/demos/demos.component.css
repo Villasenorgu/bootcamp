@@ -13,3 +13,7 @@
 .semivisible{
   opacity: 20%;
 }
+
+nav button{
+  text-transform: capitalize;
+}
