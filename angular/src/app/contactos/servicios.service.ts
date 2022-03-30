@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpContext, HttpContextToken ,} from '@angular/common/http';
+import {
+  HttpClient,
+  HttpContext,
+  HttpContextToken,
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from '../common-services/notification.service';
 import { LoggerService } from 'src/lib/my-core/services/logger.service';
+import { Router } from '@angular/router';
 
 export type ModoCRUD = 'list' | 'add' | 'edit' | 'view' | 'delete';
 export const AUTH_REQUIRED = new HttpContextToken<boolean>(() => false);
@@ -12,6 +17,7 @@ export const AUTH_REQUIRED = new HttpContextToken<boolean>(() => false);
   providedIn: 'root',
 })
 export class ContactosViewModelService {
+  protected listURL = '/contactos';
   protected modo: ModoCRUD = 'list';
   protected listado: Array<any> = [];
   protected elemento: any = {};
@@ -20,7 +26,8 @@ export class ContactosViewModelService {
   constructor(
     protected notify: NotificationService,
     protected out: LoggerService,
-    protected dao: ContactosDAOService
+    protected dao: ContactosDAOService,
+    protected router: Router
   ) {}
 
   public get Modo(): ModoCRUD {
@@ -85,26 +92,23 @@ export class ContactosViewModelService {
   public cancel(): void {
     this.elemento = {};
     this.idOriginal = null;
-    this.list();
-  }
+    // this.list();
+    this.router.navigateByUrl(this.listURL);
+    }
 
   public send(): void {
     switch (this.modo) {
       case 'add':
-        this.dao
-          .add(this.elemento)
-          .subscribe({
-            next: (data) => this.cancel(),
-            error: (err) => this.notify.add(err.message),
-          });
+        this.dao.add(this.elemento).subscribe({
+          next: (data) => this.cancel(),
+          error: (err) => this.notify.add(err.message),
+        });
         break;
       case 'edit':
-        this.dao
-          .change(this.idOriginal, this.elemento)
-          .subscribe({
-            next: (data) => this.cancel(),
-            error: (err) => this.notify.add(err.message),
-          });
+        this.dao.change(this.idOriginal, this.elemento).subscribe({
+          next: (data) => this.cancel(),
+          error: (err) => this.notify.add(err.message),
+        });
         break;
       case 'view':
         this.cancel();
@@ -142,9 +146,7 @@ export abstract class RESTDAOService<T, K> {
 export class ContactosDAOService extends RESTDAOService<any, any> {
   constructor(http: HttpClient) {
     super(http, 'contactos', {
-      context: new HttpContext().set(AUTH_REQUIRED , true),
+      context: new HttpContext().set(AUTH_REQUIRED, true),
     });
   }
 }
-
-
